@@ -32,13 +32,14 @@ class AppRoot extends React.Component {
     history: React.PropTypes.object.isRequired, // eslint-disable-line
   };
 
+
   constructor(props) {
     super(props);
     this.routes = routes;
   }
 
   render() {
-    return (df
+    return (
       <Provider store={this.props.store}>
         <MuiThemeProvider muiTheme={muiTheme}>
           <Router history={this.props.history} routes={this.routes} />

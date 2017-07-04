@@ -35,5 +35,9 @@
   },
   "SgUser": {
     "dataSource": "db"
+  },
+  "user": {
+    "dataSource": "db",
+    "public": true
   }
 }

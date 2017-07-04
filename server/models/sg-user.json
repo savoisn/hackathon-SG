@@ -6,19 +6,31 @@
     "validateUpsert": true
   },
   "properties": {
-    "firstName": "string",
-    "lastName": "string",
-    "roles": "object",
-    "uid": "string",
-    "igg": "number"
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "roles": {
+      "type": "object"
+    },
+    "uid": {
+      "type": "string"
+    },
+    "igg": {
+      "type": "number"
+    }
   },
   "validations": [],
   "relations": {},
-  "acls": [{
-    "accessType": "READ",
-    "principalType": "ROLE",
-    "principalId": "ADMIN",
-    "permission": "ALLOW"
-  }],
+  "acls": [
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "ADMIN",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }
