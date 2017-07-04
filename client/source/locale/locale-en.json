@@ -1,6 +1,10 @@
 {
   "application-name": "testreactloopbackgenerator",
   "authentication": {
-    "logout": "Logout"
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit"
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import HelloCard from '../../components/hello-card';
+import Login from '../../components/login';
 
 class HomeView extends Component {
   render() {
@@ -10,7 +10,9 @@ class HomeView extends Component {
       <div className="container">
         <div className="row center-xs">
           <div className="col-xs-12 col-md-6">
-            <HelloCard authentication={authentication} />
+            <Login
+              authentication={authentication}
+            />
           </div>
         </div>
       </div>
@@ -18,7 +20,7 @@ class HomeView extends Component {
   }
 }
 
-HomeView.propTypes = HelloCard.propTypes;
+HomeView.propTypes = Login.propTypes;
 
 function mapStateToProps(state) {
   return {
