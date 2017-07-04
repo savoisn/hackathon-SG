@@ -1,0 +1,10 @@
+{
+  "generator-react-loopback": {
+    "applicationName": "testreactloopbackgenerator",
+    "applicationFolder": "testreactloopbackgenerator",
+    "clientRequired": true,
+    "clientLanguage": "es6",
+    "serverRequired": true,
+    "serverPort": 3000
+  }
+}
