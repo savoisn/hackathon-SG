@@ -10,6 +10,8 @@ import Toggle from 'material-ui/Toggle';
 
 import FlatButton from 'material-ui/FlatButton';
 
+import styles from './index.css';
+
 import * as ExpenseActions from '../../actions/expense';
 
 class Expense extends Component {
@@ -18,7 +20,6 @@ class Expense extends Component {
     super(props);
 
     this.state = {
-
       name: '',
 
       date: moment().format('YYYY-MM-DD'),
@@ -33,24 +34,11 @@ class Expense extends Component {
 
       errorText: {
 
-
           name: '',
-
-
 
           date: '',
 
-
-
           amount: '',
-
-
-
-
-
-
-
-
       },
     };
   }

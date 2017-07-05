@@ -37,20 +37,9 @@
           "method": "POST",
           "url": "https://socgen-p-api.openbankproject.com/obp/v3.0.0/banks/socgen.31.fr.fr/accounts/{fromBankAccount}/owner/transaction-request-types/SANDBOX_TAN/transaction-requests",
           "query": {
-            "fromBankAccount": "{fromBankAccount}",
-             "account_id": "{toBankAccount}"
+            "fromBankAccount": "{fromBankAccount}"
           },
-          "body": {
-            "value": {
-              "currency": "EUR",
-              "amount": "{amount}"
-            },
-            "description": "ABC",
-            "to": {
-              "bank_id": "socgen.31.fr.fr",
-              "account_id": "e5de7055-fa77-4b15-85f1-391e5b926bd0"
-            }
-          },
+          "body": "{body:json}",
           "headers": {
             "Content-Type": "application/json",
             "Authorization": "DirectLogintoken={userToken}"
@@ -64,8 +53,7 @@
         "functions": {
           "transferMoney": [
             "fromBankAccount",
-            "amount",
-            "toBankAccount",
+            "body",
             "userToken"
           ]
         }
