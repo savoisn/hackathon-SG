@@ -2,5 +2,74 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "APIDataSource": {
+    "connector": "rest",
+    "name": "restAPI",
+    "operations": [
+      {
+        "template": {
+          "method": "GET",
+          "url": "https://socgen-p-api.openbankproject.com/obp/v3.0.0/my/banks/socgen.31.fr.fr/accounts/{bankAccount}/account",
+          "query": {
+            "bankaccount": "{bankAccount}",
+            "userToken": "{userToken}"
+          },
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "DirectLogintoken={userToken}"
+          },
+          "options": {
+            "strictSSL": true,
+            "useQuerystring": true
+          },
+          "responsePath": "$.balance.amount"
+        },
+        "functions": {
+          "getAccount": [
+            "bankAccount",
+            "userToken"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
+          "url": "https://socgen-p-api.openbankproject.com/obp/v3.0.0/banks/socgen.31.fr.fr/accounts/{fromBankAccount}/owner/transaction-request-types/SANDBOX_TAN/transaction-requests",
+          "query": {
+            "fromBankAccount": "{fromBankAccount}",
+            "toBankAccount": "{toBankAccount}",
+            "userToken": "{userToken}"
+          },
+          "body": {
+            "value": {
+              "currency": "EUR",
+              "amount": "1"
+            },
+            "description": "ABC",
+            "to": {
+              "bank_id": "socgen.31.fr.fr",
+              "account_id": "{toBankAccount}"
+            }
+          },
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "DirectLogintoken={userToken}"
+          },
+          "options": {
+            "strictSSL": true,
+            "useQuerystring": true
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "transferMoney": [
+            "fromBankAccount",
+            "toBankAccount",
+            "userToken"
+          ]
+        }
+      }
+    ]
   }
 }
