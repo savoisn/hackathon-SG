@@ -1,12 +1,28 @@
-container {
-  padding: '10px';
+.container {
+  padding: 2%;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-family:
+  font-family: 'Raleway', sans-serif;
 }
 
-property {
-  margin: '0px 15px 0px 0px';
+.container h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 26px;
+  text-align: center;
+  color: #003962;
 }
 
-toggle {
-  margin: '0px 15px 0px 0px';
-  width: 'auto';
+.list li {
+  list-style: none;
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.list img {
+  width: 60px;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin: 0 10px;
 }
