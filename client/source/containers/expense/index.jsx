@@ -9,6 +9,7 @@ import DatePicker from 'material-ui/DatePicker';
 import Toggle from 'material-ui/Toggle';
 
 import FlatButton from 'material-ui/FlatButton';
+import styles from './index.css';
 
 import * as ExpenseActions from '../../actions/expense';
 
