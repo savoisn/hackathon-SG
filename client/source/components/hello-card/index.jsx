@@ -10,14 +10,17 @@ class HelloCard extends Component {
   }
   render() {
     let expenseSummary = {};
+    let totalCost = 0;
     _.map(this.props.sgUsers, (user) => (
       expenseSummary[user.id] = {
         name: user.firstName + ' ' + user.lastName,
+        pic: user.pik,
         amount: 0,
       }
     ));
     _.map(this.props.expenses, (expense) => (
-      expenseSummary[expense.PayerId].amount += expense.amount
+      expenseSummary[expense.PayerId].amount += expense.amount,
+      totalCost += expense.amount
     ));
 
     const { authentication: { user = { roles: [] } } } = this.props;
@@ -25,13 +28,12 @@ class HelloCard extends Component {
       <div className="box">
         <Card>
           <CardText>
-            <h1>Hello {user.firstName}</h1>
-            <h2>Your roles: {user.roles.map(role => role.name).join(', ')}</h2>
+            TOTAL COST: {totalCost}
           </CardText>
         </Card>
         <ul>
           {_.map(expenseSummary, (expense, index) => (
-            <li key={index} >{expense.name} {expense.amount}</li>
+            <li key={index} > <img src={expense.pic} />{expense.name} {expense.amount}</li>
           ))}
         </ul>
       </div>);
