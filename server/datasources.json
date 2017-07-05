@@ -12,8 +12,7 @@
           "method": "GET",
           "url": "https://socgen-p-api.openbankproject.com/obp/v3.0.0/my/banks/socgen.31.fr.fr/accounts/{bankAccount}/account",
           "query": {
-            "bankaccount": "{bankAccount}",
-            "userToken": "{userToken}"
+            "bankaccount": "{bankAccount}"
           },
           "headers": {
             "Content-Type": "application/json",
