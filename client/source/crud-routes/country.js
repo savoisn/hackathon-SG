@@ -5,7 +5,7 @@ import { Route } from 'react-router';
 import Country from '../containers/country';
 
 const route = (
-  <Route path="country" component={Country} />
+  <Route key="country" path="country" component={Country} />
 );
 
 export default route;

@@ -2,17 +2,6 @@
 module.exports = (params) => {
   const rules = [];
 
-  rules.push({
-    test: /\.(js|jsx)$/,
-    exclude: /node_modules/,
-    enforce: 'pre',
-    use: {
-      loader: 'eslint-loader',
-      options: {
-        emitWarning: true,
-      },
-    },
-  });
 
   rules.push({
     test: /\.(js|jsx)$/,

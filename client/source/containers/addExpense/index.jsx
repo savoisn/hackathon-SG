@@ -3,10 +3,8 @@ import _ from 'lodash';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import Toggle from 'material-ui/Toggle';
 
 import FlatButton from 'material-ui/FlatButton';
 
@@ -21,25 +19,17 @@ class Expense extends Component {
 
     this.state = {
       name: '',
-
       date: moment().format('YYYY-MM-DD'),
-
       amount: 0,
-
       payer: '',
-
       recipients: '',
-
       settled: false,
-
       errorText: {
-
-          name: '',
-
-          date: '',
-
-          amount: '',
+        name: '',
+        date: '',
+        amount: '',
       },
+      selectedUser: [],
     };
   }
 
@@ -61,8 +51,24 @@ class Expense extends Component {
     });
   };
 
-  render() {
+  handleUserSelect = (e, username) => {
+    const target = e.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const selectedUser = this.state.selectedUser;
+    let newSelectedUser = [];
+    if (value) {
+      newSelectedUser = [...selectedUser, username];
+    } else {
+      newSelectedUser = selectedUser.filter(name =>
+        name !== username,
+      );
+    }
 
+    this.setState({
+      selectedUser: newSelectedUser,
+    });
+  }
+  render() {
     return (
       <div style={styles.container}>
         <h1>Expense</h1>
@@ -72,14 +78,6 @@ class Expense extends Component {
                 onChange={(e, value) => this.handleChange(e, 'name', value)}
                 style={styles.property}
                 value={this.state.name}
-              />
-
-
-              <DatePicker
-                hintText="date"
-                onChange={(e, value) => this.handleChange(e, 'date', value)}
-                style={styles.property}
-                value={this.state.date}
               />
 
 
@@ -107,11 +105,26 @@ class Expense extends Component {
                 value={this.state.recipients}
               />
 
+
+            <ul>
+              {_.map(this.props.sgUsers, (user, index) => (
+                <li key={index}>
+                  <input type="checkbox"
+                    onChange={e => this.handleUserSelect(e, user.username)}
+                  />
+                  <img src={"./"+user.username} />
+                  {user.firstName}
+                </li>
+              ))}
+            </ul>
+
           <FlatButton
             label="Submit"
             onTouchTap={this.createModelInstance}
           />
+
         </div>
+
 
 
     );
@@ -129,6 +142,7 @@ Expense.propTypes = {
 function mapStateToProps(state) {
   return {
     expenses: state.expense,
+    sgUsers: state.sgusers,
   };
 }
 

@@ -17,7 +17,17 @@ export const createProject = (data) => {
 }
 
 export const getProject = () => {
+  let projects;
   return dispatch => dispatch(request('api/Projects'))
+  .then(res => {
+    let projects = res.data;
+    Promise.all(res.data).then((project) => {
+      dispatch(request(`api/Projects/${project[0].id}/users`))
+      .then( (res) =>{
+        project.users=res.data
+      })
+    })
+  })
   .then(res => dispatch(getProjectSuccess(res.data)))
   .catch(error => dispatch(getProjectError(error)));
 }

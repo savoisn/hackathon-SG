@@ -30,7 +30,6 @@ const loaders = (params, withCssModules) =>
         loader: 'postcss-loader',
         options: {
           plugins: () => [
-            pcStylelint,
             pcImport,
             pcCssnext({
               // Autoprefixer
