@@ -21,23 +21,14 @@ class Expense extends Component {
 
     this.state = {
       name: '',
-
       date: moment().format('YYYY-MM-DD'),
-
       amount: 0,
-
       payer: '',
-
       recipients: '',
-
       settled: false,
-
       errorText: {
-
           name: '',
-
           date: '',
-
           amount: '',
       },
     };

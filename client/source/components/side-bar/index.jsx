@@ -10,7 +10,7 @@ export default class SideBar extends Component {
       <Drawer open={this.props.open}>
         <AppBar
           onLeftIconButtonTouchTap={this.props.onCloseSideBar}
-          title="mydemo"
+          title="Menu"
         />
         <List>
           <ListItem
