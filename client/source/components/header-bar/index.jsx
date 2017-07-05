@@ -17,7 +17,7 @@ export default class HeaderBar extends Component {
       <div className={styles.btnLine}>
 
         <Link className={styles.firstLink} to="/"><i></i><span>solder</span></Link>
-        <Link className={styles.secondLink}><span>- 46 e</span></Link>
+        <Link className={styles.secondLink}><span>- 46.00 e</span></Link>
         <Link className={styles.thirdLink} to="/"><i></i><span>activité</span></Link>
       </div>
 
