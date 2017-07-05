@@ -6,6 +6,7 @@ export default class HeaderBar extends Component {
     return (
       <AppBar
         onLeftIconButtonTouchTap={this.props.onOpenSideBar}
+        title="Cash Pool"
       />
     );
   }
