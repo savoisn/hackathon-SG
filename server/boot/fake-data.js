@@ -1,10 +1,24 @@
 'use strict';
 
 module.exports = function (server) {
-  server.dataSources.db.automigrate('SgUser', function(err) {
+  server.dataSources.db.automigrate('project', function(err) {
     if(err) throw err;
     
-    server.models.SgUser.create([{
+    server.models.project.create([{
+      id: 1,
+      name: "Renovons la maison familiale",
+      totalspent: "0",
+      open: true,
+      finalizing: "",
+    }], function(err, projects) {
+      if (err) throw err;
+    });
+  });
+
+  server.dataSources.db.automigrate('sguser', function(err) {
+    if(err) throw err;
+    
+    server.models.sguser.create([{
       username: 'nsavois',
       email: 'nsavois@gmail.com',
       password: '1234',
@@ -40,7 +54,54 @@ module.exports = function (server) {
       roles:[
         {name: "ADMIN"}
       ]
-    }], function(err, coffeeShops) {
+    }], function(err, users) {
+      if (err) throw err;
+    });
+  });
+  server.dataSources.db.automigrate('ProjectUser', function(err) {
+    if(err) throw err;
+    
+    server.models.ProjectUser.create([{
+      userId: 1,
+      projectId: 1
+    },{
+      userId: 2,
+      projectId: 1
+    },{
+      userId: 3,
+      projectId: 1
+    },{
+      userId: 4,
+      projectId: 1
+    }], function(err, projects) {
+      if (err) throw err;
+    });
+  });
+  server.dataSources.db.automigrate('expense', function(err) {
+    if(err) throw err;
+    
+    server.models.expense.create([{
+      name:'first expense',
+			date: new Date(),
+			amount: 2000,
+			PayerId: 1,
+			settled: true,
+			projectId: 1
+
+    }], function(err, projects) {
+      if (err) throw err;
+    });
+  });
+  server.dataSources.db.automigrate('ExpenseRecipient', function(err) {
+    if(err) throw err;
+    
+    server.models.ExpenseRecipient.create([{
+      recipientId: 2,
+      expenseId: 1
+    }, {
+      recipientId: 3,
+      expenseId: 1
+    }], function(err, projects) {
       if (err) throw err;
     });
   });

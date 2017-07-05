@@ -1,0 +1,26 @@
+{
+  "name": "ProjectUser",
+  "plural": "ProjectUsers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+  },
+  "validations": [],
+  "relations": {
+    "sguser": {
+      "type": "belongsTo",
+      "model": "sguser",
+      "foreignKey": "userId"
+    },
+    "project": {
+      "type": "belongsTo",
+      "model": "project",
+      "foreignKey": "projectId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

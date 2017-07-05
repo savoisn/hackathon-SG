@@ -1,0 +1,26 @@
+{
+  "name": "ExpenseRecipient",
+  "plural": "ExpenseRecipients",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+  },
+  "validations": [],
+  "relations": {
+    "sguser": {
+      "type": "belongsTo",
+      "model": "sguser",
+      "foreignKey": "recipientId"
+    },
+    "expense": {
+      "type": "belongsTo",
+      "model": "expense",
+      "foreignKey": "expenseId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

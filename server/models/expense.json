@@ -1,6 +1,6 @@
 {
-  "name": "project",
-  "plural": "projects",
+  "name": "expense",
+  "plural": "expenses",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -15,30 +15,35 @@
       "type": "string",
       "required": true
     },
-    "totalspent": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "amount": {
       "type": "number",
-      "required": false
+      "required": true
     },
-    "open": {
-      "type": "boolean",
-      "required": false
-    },
-    "finalizing": {
+    "settled": {
       "type": "boolean",
       "required": false
     }
   },
   "validations": [],
   "relations": {
-    "users": {
+    "payer": {
+      "type": "belongsTo",
+      "model": "sguser",
+      "foreignKey": "PayerId"
+    },
+    "recipients": {
       "type": "hasMany",
       "model": "sguser",
-      "foreignKey": "projectId",
-      "through": "ProjectUser"
+			"through": "ExpenseRecipient",
+      "foreignKey": "expenseId"
     },
-    "expense": {
-      "type": "hasMany",
-      "model": "expense",
+    "project": {
+      "type": "belongsTo",
+      "model": "project",
       "foreignKey": "projectId"
     }
   },
