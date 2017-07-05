@@ -92,6 +92,33 @@ module.exports = function (server) {
 			settled: true,
 			projectId: 1
 
+    },
+    {
+      name:'second expense',
+			date: new Date(),
+			amount: 200,
+			PayerId: 1,
+			settled: true,
+			projectId: 1
+
+    },
+    {
+      name:'first expense',
+			date: new Date(),
+			amount: 100,
+			PayerId: 2,
+			settled: true,
+			projectId: 1
+
+    },
+    {
+      name:'first expense',
+			date: new Date(),
+			amount: 200,
+			PayerId: 2,
+			settled: true,
+			projectId: 1
+
     }], function(err, projects) {
       if (err) throw err;
     });
