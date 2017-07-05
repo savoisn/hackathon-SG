@@ -70,8 +70,8 @@ class Expense extends Component {
   }
   render() {
     return (
-      <div style={styles.container}>
-        <h1>Expense</h1>
+      <div className={styles.container}>
+        <h1>Ajouter une dépense</h1>
 
               <TextField
                 hintText="name"
@@ -112,7 +112,7 @@ class Expense extends Component {
                   <input type="checkbox"
                     onChange={e => this.handleUserSelect(e, user.username)}
                   />
-                  <img src={"./"+user.username} />
+                  <img src={user.pik} />
                   {user.firstName}
                 </li>
               ))}

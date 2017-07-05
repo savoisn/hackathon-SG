@@ -1,12 +1,13 @@
-container {
-  padding: '10px';
+.container {
+  padding: 2%;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
 }
 
-property {
-  margin: '0px 15px 0px 0px';
-}
-
-toggle {
-  margin: '0px 15px 0px 0px';
-  width: 'auto';
+.container h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 26px;
+  text-align: center;
+  color: #003962;
 }
