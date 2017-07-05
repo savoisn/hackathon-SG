@@ -1,0 +1,6 @@
+{
+  "application-name": "mydemo",
+  "authentication": {
+    "logout": "Déconnexion"
+  }
+}

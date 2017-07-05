@@ -1,0 +1,6 @@
+{
+  "AUTH":"api/auth",
+  "AUTH_LOGIN":"api/SgUsers/login",
+  "AUTH_USER":"api/SgUsers/",
+  "AUTH_LOGOUT": "logout"
+}

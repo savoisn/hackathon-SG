@@ -1,0 +1,31 @@
+{
+  "name": "country",
+  "plural": "countries",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "capital": {
+      "type": "string",
+      "required": false
+    },
+    "population": {
+      "type": "number",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

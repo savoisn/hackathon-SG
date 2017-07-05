@@ -1,0 +1,13 @@
+{
+  "generator-react-loopback": {
+    "applicationName": "mydemo",
+    "applicationFolder": "mydemo",
+    "clientRequired": true,
+    "clientLanguage": "es6",
+    "serverRequired": true,
+    "serverPort": 3000,
+    "crudEntites": [
+      "Country"
+    ]
+  }
+}
