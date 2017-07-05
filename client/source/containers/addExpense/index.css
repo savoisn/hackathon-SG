@@ -3,6 +3,8 @@
   width: 100%;
   box-sizing: border-box;
   text-align: center;
+  font-family:
+  font-family: 'Raleway', sans-serif;
 }
 
 .container h1 {
@@ -10,4 +12,17 @@
   font-size: 26px;
   text-align: center;
   color: #003962;
+}
+
+.list li {
+  list-style: none;
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.list img {
+  width: 60px;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin: 0 10px;
 }
