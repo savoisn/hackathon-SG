@@ -33,8 +33,9 @@
     "dataSource": "db",
     "public": false
   },
-  "SgUser": {
-    "dataSource": "db"
+  "sguser": {
+    "dataSource": "db",
+    "public": true
   },
   "country": {
     "dataSource": "db",
@@ -43,5 +44,17 @@
   "project": {
     "dataSource": "db",
     "public": true
-  }
+  },
+  "ProjectUser": {
+    "dataSource": "db",
+    "public": true
+  },
+  "expense": {
+    "dataSource": "db",
+    "public": true
+  },
+	"ExpenseRecipient": {
+    "dataSource": "db",
+    "public": true
+	}
 }

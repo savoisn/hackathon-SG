@@ -1,5 +1,5 @@
 {
-  "name": "SgUser",
+  "name": "sguser",
   "base": "User",
   "idInjection": true,
   "options": {
@@ -13,7 +13,20 @@
     "igg": "number"
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "project": {
+      "type": "hasMany",
+      "model": "project",
+      "foreignKey": "userId",
+      "through": "ProjectUser"
+    },
+    "recipient": {
+      "type": "hasMany",
+      "model": "expense",
+      "through": "ExpenseRecipient",
+      "foreignKey": "recipientId"
+    }
+  },
   "acls": [{
     "accessType": "READ",
     "principalType": "ROLE",
