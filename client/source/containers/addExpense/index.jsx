@@ -69,7 +69,6 @@ class Expense extends Component {
     });
   }
   render() {
-    console.log(this.state.selectedUser);
     return (
       <div style={styles.container}>
         <h1>Expense</h1>
@@ -79,14 +78,6 @@ class Expense extends Component {
                 onChange={(e, value) => this.handleChange(e, 'name', value)}
                 style={styles.property}
                 value={this.state.name}
-              />
-
-
-              <DatePicker
-                hintText="date"
-                onChange={(e, value) => this.handleChange(e, 'date', value)}
-                style={styles.property}
-                value={this.state.date}
               />
 
 
@@ -114,24 +105,26 @@ class Expense extends Component {
                 value={this.state.recipients}
               />
 
+
+            <ul>
+              {_.map(this.props.sgUsers, (user, index) => (
+                <li key={index}>
+                  <input type="checkbox"
+                    onChange={e => this.handleUserSelect(e, user.username)}
+                  />
+                  <img src={"./"+user.username} />
+                  {user.firstName}
+                </li>
+              ))}
+            </ul>
+
           <FlatButton
             label="Submit"
             onTouchTap={this.createModelInstance}
           />
 
-          <ul>
-            {_.map(this.props.sgUsers, (user, index) => (
-              <li key={index}>
-                <input type="checkbox" 
-                  onChange={e => this.handleUserSelect(e, user.username)}
-                />
-                <img src={"./"+user.username} />
-                {user.firstName}
-              </li>
-            ))}
-          </ul>
         </div>
-      
+
 
 
     );
