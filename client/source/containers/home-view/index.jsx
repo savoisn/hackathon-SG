@@ -5,7 +5,9 @@ import HelloCard from '../../components/hello-card';
 
 class HomeView extends Component {
   render() {
+    console.log(this.props);
     const { authentication = {} } = this.props;
+    console.log("authentication",authentication);
     return (
       <div className="container">
         <div className="row center-xs">

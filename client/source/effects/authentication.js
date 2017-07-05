@@ -14,10 +14,16 @@ export const login = credentials =>
       token = res.data.id
       return dispatch(request(urls.AUTH_USER+res.data.userId, { method: 'GET' } ))
     }).then((res) => {
-      console.log('res',res);
+      console.log('res', res);
       res.data.userId = res.data.id;
       res.data.id = token;
-      return dispatch(action.login(res.data));
+
+      const authentication = {
+        id: token,
+        user: res.data,
+      };
+
+      return dispatch(action.login(authentication));
     }).then(() => {
       dispatch(push('/'));
     });
