@@ -3,10 +3,8 @@ import _ from 'lodash';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import Toggle from 'material-ui/Toggle';
 
 import FlatButton from 'material-ui/FlatButton';
 
@@ -27,10 +25,11 @@ class Expense extends Component {
       recipients: '',
       settled: false,
       errorText: {
-          name: '',
-          date: '',
-          amount: '',
+        name: '',
+        date: '',
+        amount: '',
       },
+      selectedUser: [],
     };
   }
 
@@ -52,9 +51,25 @@ class Expense extends Component {
     });
   };
 
-  render() {
+  handleUserSelect = (e, username) => {
+    const target = e.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const selectedUser = this.state.selectedUser;
+    let newSelectedUser = [];
+    if (value) {
+      newSelectedUser = [...selectedUser, username];
+    } else {
+      newSelectedUser = selectedUser.filter(name =>
+        name !== username,
+      );
+    }
 
-    console.log("sguser", this.props.sgUsers);
+    this.setState({
+      selectedUser: newSelectedUser,
+    });
+  }
+  render() {
+    console.log(this.state.selectedUser);
     return (
       <div style={styles.container}>
         <h1>Expense</h1>
@@ -106,7 +121,13 @@ class Expense extends Component {
 
           <ul>
             {_.map(this.props.sgUsers, (user, index) => (
-              <li key={index} >{user.firstName}</li>
+              <li key={index}>
+                <input type="checkbox" 
+                  onChange={e => this.handleUserSelect(e, user.username)}
+                />
+                <img src={"./"+user.username} />
+                {user.firstName}
+              </li>
             ))}
           </ul>
         </div>
