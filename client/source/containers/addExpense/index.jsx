@@ -109,11 +109,13 @@ class Expense extends Component {
             <ul className={styles.list}>
               {_.map(this.props.sgUsers, (user, index) => (
                 <li key={index}>
-                  <input type="checkbox"
+                  <input id={index} type="checkbox"
                     onChange={e => this.handleUserSelect(e, user.username)}
                   />
-                  <img src={user.pik} />
-                  {user.firstName}
+                  <label htmlFor={index}>
+                    <img src={user.pik} />
+                    {user.firstName}
+                  </label>
                 </li>
               ))}
             </ul>
