@@ -54,6 +54,7 @@ class Expense extends Component {
 
   render() {
 
+    console.log("sguser", this.props.sgUsers);
     return (
       <div style={styles.container}>
         <h1>Expense</h1>
@@ -102,7 +103,14 @@ class Expense extends Component {
             label="Submit"
             onTouchTap={this.createModelInstance}
           />
+
+          <ul>
+            {_.map(this.props.sgUsers, (user, index) => (
+              <li key={index} >{user.firstName}</li>
+            ))}
+          </ul>
         </div>
+      
 
 
     );
@@ -120,6 +128,7 @@ Expense.propTypes = {
 function mapStateToProps(state) {
   return {
     expenses: state.expense,
+    sgUsers: state.sgusers,
   };
 }
 

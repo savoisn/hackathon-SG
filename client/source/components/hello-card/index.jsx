@@ -4,7 +4,6 @@ import { Card, CardText } from 'material-ui/Card';
 class HelloCard extends Component {
   render() {
     const { authentication: { user = { roles: [] } } } = this.props;
-    console.log("HC ",this.props);
     return (
       <div className="box">
         <Card>
