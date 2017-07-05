@@ -45,6 +45,10 @@
     "dataSource": "db",
     "public": true
   },
+  "OpenBankApi": {
+    "dataSource": "APIDataSource",
+    "public": true
+  },
   "ProjectUser": {
     "dataSource": "db",
     "public": true

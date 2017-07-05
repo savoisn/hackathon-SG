@@ -1,0 +1,12 @@
+{
+  "name": "OpenBankApi",
+  "plural": "OpenBankApi",
+  "base": "Model",
+  "idInjection": false,
+  "properties": {},
+  "options": {
+    "promisify": true
+  },
+  "acls": [],
+  "methods": []
+}
