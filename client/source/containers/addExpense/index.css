@@ -28,7 +28,6 @@
   margin: 0 10px;
 }
 
-
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
   position: absolute;

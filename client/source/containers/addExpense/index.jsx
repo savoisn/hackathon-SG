@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import FlatButton from 'material-ui/FlatButton';
 
@@ -120,8 +121,9 @@ class Expense extends Component {
               ))}
             </ul>
 
-          <FlatButton
+          <RaisedButton
             label="Submit"
+            primary={true}
             onTouchTap={this.createModelInstance}
           />
 
