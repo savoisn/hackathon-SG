@@ -5492,7 +5492,7 @@ loopback-connector-remote@^3.0.0:
     loopback-datasource-juggler "^3.0.0"
     strong-remoting "^3.0.0"
 
-loopback-connector-rest@^2.1.0:
+loopback-connector-rest@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/loopback-connector-rest/-/loopback-connector-rest-2.1.0.tgz#67b7cf5532e8813beb3e78fb8613147473c46c35"
   dependencies:
