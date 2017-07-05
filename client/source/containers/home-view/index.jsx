@@ -7,13 +7,11 @@ import HelloCard from '../../components/hello-card';
 
 class HomeView extends Component {
   componentWillMount() {
-    this.props.getAccountBalance();
-
     const fromUser = 'tnguyen@gmail.com';  // Should be one of : nsavois@gmail.com, aambal@gmail.com', bdekens@gmail.com, tnguyen@gmail.com
     const toUser = 'nsavois@gmail.com';    // Should be one of : nsavois@gmail.com, aambal@gmail.com', bdekens@gmail.com, tnguyen@gmail.com
     const amount = '1.00';
     const transactionLabel = 'ABC';
-    this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel);
+    // this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel); // UNCOMMENT to make transfer
   }
 
   render() {
