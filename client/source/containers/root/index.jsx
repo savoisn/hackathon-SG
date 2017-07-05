@@ -10,8 +10,13 @@ import SideBar from '../../components/side-bar';
 import * as AuthenticationEffect from '../../effects/authentication';
 import * as SideBarAction from '../../actions/side-bar';
 
+import * as SgUserActions from '../../actions/sgusers';
 
 export class Root extends Component {
+
+  componentWillMount() {
+    this.props.sgUsersActions.getSgUsers();
+  }
 
   doLogout() {
     this.props.authenticationEffects.logout();
@@ -63,6 +68,7 @@ function mapStateToProps(state) {
   return {
     authentication: state.authentication,
     sideBar: state['side-bar'],
+    sgUsers: state.sgusers,
   };
 }
 
@@ -70,6 +76,7 @@ function mapDispatchToProps(dispatch) {
   return {
     authenticationEffects: bindActionCreators(AuthenticationEffect, dispatch),
     sideBarActions: bindActionCreators(SideBarAction, dispatch),
+    sgUsersActions: bindActionCreators(SgUserActions, dispatch),
   };
 }
 

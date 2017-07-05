@@ -8,6 +8,10 @@ export default function reducer(state = [], action) {
     case cst.CREATE_EXPENSE_SUCCESS: {
       return [...state, ...action.payload];
     }
+    case cst.CREATE_EXPENSE_RECIPIENT_SUCCESS: {
+      console.log(action.payload);
+      return [...state, ...action.payload];
+    }
     default:
       return state;
   }

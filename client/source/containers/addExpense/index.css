@@ -1,0 +1,12 @@
+container {
+  padding: '10px';
+}
+
+property {
+  margin: '0px 15px 0px 0px';
+}
+
+toggle {
+  margin: '0px 15px 0px 0px';
+  width: 'auto';
+}

@@ -9,6 +9,7 @@ import Toggle from 'material-ui/Toggle';
 import FlatButton from 'material-ui/FlatButton';
 
 import * as ProjectActions from '../../actions/project';
+import * as SgUserActions from '../../actions/sgusers';
 
 class Project extends Component {
   
@@ -52,6 +53,7 @@ class Project extends Component {
 
   componentWillMount() {
     this.props.projectActions.getProject();
+    this.props.sgUsersActions.getSgUsers();
   }
 
   createModelInstance = () => {
@@ -77,6 +79,7 @@ class Project extends Component {
   };
 
   render() {
+    console.log(this.props.sgusers);
     const styles = {
       container: {
         padding: '10px',
@@ -238,12 +241,14 @@ Project.propTypes = {
 function mapStateToProps(state) {
   return {
     projects: state.project,
+    sgUsers: state.sgusers,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     projectActions: bindActionCreators(ProjectActions, dispatch),
+    sgUsersActions: bindActionCreators(SgUserActions, dispatch),
   };
 }
 
