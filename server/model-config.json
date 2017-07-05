@@ -39,5 +39,9 @@
   "country": {
     "dataSource": "db",
     "public": true
+  },
+  "project": {
+    "dataSource": "db",
+    "public": true
   }
 }

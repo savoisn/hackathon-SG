@@ -1,0 +1,43 @@
+{
+  "name": "project",
+  "plural": "projects",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "totalspent": {
+      "type": "number",
+      "required": false
+    },
+    "expenses": {
+      "type": "string",
+      "required": false
+    },
+    "users": {
+      "type": "string",
+      "required": false
+    },
+    "open": {
+      "type": "boolean",
+      "required": false
+    },
+    "finalizing": {
+      "type": "boolean",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
