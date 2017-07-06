@@ -14,7 +14,12 @@ import * as ExpenseActions from '../../actions/expense';
 import styles from './index.css';
 
 class Solde extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      isProjectOpened: true,
+    };
+  }
   getUserBalance = (amount, totalSpent, userNum) => {
     let userBalance = amount - (totalSpent / userNum);
     userBalance = userBalance.toFixed(2);
@@ -73,7 +78,12 @@ class Solde extends Component {
           const toUser = positiveUser[i].email;
           const amount = negativeUser[0].balance;
           const transactionLabel = 'sold';
-          this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel);
+          this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel).then((response) => {
+            console.log('Money transfer : ', response);
+            this.setState({
+              isProjectOpened: false,
+            });
+          });
           negativeUser.shift();
         } else {
           negativeUser[0].balance -= positiveUser[i].balance;
@@ -82,20 +92,42 @@ class Solde extends Component {
           const toUser = positiveUser[i].email;
           const amount = positiveUser[i].balance;
           const transactionLabel = 'sold';
-          this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel);
+          this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel).then((response) => {
+            console.log('Money transfer : ', response);
+            this.setState({
+              isProjectOpened: false,
+            });
+          });
           positiveUser[i].balance = 0;
         }
       }
     }
   }
-  render() {
+
+  renderProjectOpenedHtml = () => {
     return (
       <div className={styles.container}>
         <h1>Voulez-vous solder la balance de vos comptes ?</h1>
-
         <div className={styles.btnLine}>
           <Link className={styles.firstLink} onClick={this.handleBalanceClick}><i></i><span>Valider</span></Link>
         </div>
+      </div>
+    );
+  }
+
+  renderProjectClosedHtml = () => {
+    return (
+      <div className={styles.container}>
+        <h1>Comptes soldés</h1>
+      </div>
+    );
+  }
+
+  render() {
+    const isProjectOpened = this.state.isProjectOpened;
+    return (
+      <div>
+        {isProjectOpened ? this.renderProjectOpenedHtml() : this.renderProjectClosedHtml() }
       </div>
     );
   }
