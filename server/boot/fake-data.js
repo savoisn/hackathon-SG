@@ -115,7 +115,7 @@ module.exports = function (server) {
       name:'first expense',
 			date: new Date(),
 			amount: 200,
-			PayerId: 2,
+			PayerId: 4,
 			settled: true,
 			projectId: 1
 
