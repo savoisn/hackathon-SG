@@ -21,7 +21,15 @@ class Activity extends Component {
           {_.map(this.props.expenses, (expense, index) => (
             <li key={index}>
               <label htmlFor={index}>
-                <img src={this.props.sgUsers.filter(user => user.id === expense.PayerId)[0].pik} /> {this.props.sgUsers.filter(user => user.id === expense.PayerId)[0].firstName} {this.props.sgUsers.filter(user => user.id === expense.PayerId)[0].lastName} {expense.name} {parseFloat(Math.round(parseFloat(expense.amount) * 100) / 100).toFixed(2)}€ {moment(expense.date).format('L')}
+                <img src={this.props.sgUsers.filter(user => user.id === expense.PayerId)[0].pik} />
+                <p>
+                  {this.props.sgUsers.filter(user => user.id === expense.PayerId)[0].firstName}
+                  <span>{moment(expense.date).format('L')}</span>
+                </p>
+                <p className={styles.bold}>
+                  {expense.name}
+                  <span>{parseFloat(Math.round(parseFloat(expense.amount) * 100) / 100).toFixed(2)}€</span>
+                </p>
               </label>
             </li>
           ))}

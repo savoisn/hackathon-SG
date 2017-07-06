@@ -85,16 +85,16 @@ module.exports = function (server) {
     if(err) throw err;
 
     server.models.expense.create([{
-      name:'first expense',
+      name:'Rideaux',
 			date: new Date(),
-			amount: 2000,
+			amount: 50,
 			PayerId: 1,
 			settled: true,
 			projectId: 1
 
     },
     {
-      name:'second expense',
+      name:'Canapé 2 places',
 			date: new Date(),
 			amount: 200,
 			PayerId: 1,
@@ -103,7 +103,7 @@ module.exports = function (server) {
 
     },
     {
-      name:'first expense',
+      name:'Tringles',
 			date: new Date(),
 			amount: 100,
 			PayerId: 2,
@@ -112,7 +112,7 @@ module.exports = function (server) {
 
     },
     {
-      name:'first expense',
+      name:'Chaise design',
 			date: new Date(),
 			amount: 200,
 			PayerId: 4,
