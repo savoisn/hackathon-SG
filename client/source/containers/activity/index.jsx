@@ -15,8 +15,6 @@ class Activity extends Component {
     this.props.expenseActions.getExpense();
   }
   render() {
-    console.log('users : ', this.props.sgUsers);
-    console.log('expenses : ', this.props.expenses);
     return (
       <div>
         <ul className={styles.list}>

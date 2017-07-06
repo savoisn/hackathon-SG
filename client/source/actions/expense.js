@@ -20,7 +20,7 @@ export const createExpense = (data) => {
     date: data.date,
     amount: data.amount,
     settled: false,
-    PayerId: 2,
+    PayerId: data.payer,
     projectId: 1,
   };
 
@@ -29,16 +29,14 @@ export const createExpense = (data) => {
     { method: 'POST', body: JSON.stringify(expense) },
   ))
   .then(res => {
-    console.log(res);
     const expenseid = res.data.id;
     const promises = data.selectedUsers.map((recipientid) => {
       return new Promise ((resolve, reject) => {
-        console.log(recipientid);
         const exrc = {
           recipientId: recipientid,
           expenseId: expenseid,
         }
-        dispatch(request(`api/ExpenseRecipients`, 
+        dispatch(request(`api/ExpenseRecipients`,
           { method: 'POST', body: JSON.stringify(exrc) }))
         .then(res => resolve(res))
         .catch(err => reject(err))
