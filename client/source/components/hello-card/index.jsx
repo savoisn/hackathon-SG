@@ -40,8 +40,6 @@ class HelloCard extends Component {
           ))}
         </ul>
 
-        <Link className={styles.addExpense} to="/addExpense"><span>+</span></Link>
-
         <div className={styles.newExpense}>
           <p>XXX vient d'ajouter une dépense</p>
         </div>

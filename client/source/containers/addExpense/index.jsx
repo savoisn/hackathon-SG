@@ -119,7 +119,7 @@ class Expense extends Component {
             </ul>
 
           <RaisedButton
-            label="Submit"
+            label="Enregistrer"
             primary={true}
             onTouchTap={this.createModelInstance}
           />

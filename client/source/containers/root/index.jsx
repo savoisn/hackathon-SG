@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -11,6 +12,8 @@ import * as AuthenticationEffect from '../../effects/authentication';
 import * as SideBarAction from '../../actions/side-bar';
 
 import * as SgUserActions from '../../actions/sgusers';
+
+import styles from './index.css';
 
 export class Root extends Component {
 
@@ -40,6 +43,8 @@ export class Root extends Component {
           goToLogin={this.goToLogin}
         />
         {this.props.children}
+
+        <Link className={styles.addExpense} to="/addExpense"><span>+</span></Link>
       </div>
     );
   }

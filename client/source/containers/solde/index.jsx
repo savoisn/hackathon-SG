@@ -7,9 +7,9 @@ import { bindActionCreators } from 'redux';
 
 import FlatButton from 'material-ui/FlatButton';
 
-import styles from './index.css';
-
 import * as ExpenseActions from '../../actions/expense';
+
+import styles from './index.css';
 
 class Solde extends Component {
   handleBalanceClick = () => {
@@ -20,7 +20,7 @@ class Solde extends Component {
   }
   render() {
     return (
-      <div>
+      <div className={styles.container}>
         <h1>Voulez-vous solder la balance de vos comptes ?</h1>
         <RaisedButton
           label="Valider"
