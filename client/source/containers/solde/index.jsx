@@ -5,6 +5,7 @@ import moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { makeMoneyTransfer } from '../../actions/transferMoney';
 
 import FlatButton from 'material-ui/FlatButton';
 
@@ -15,9 +16,7 @@ import styles from './index.css';
 class Solde extends Component {
 
   getUserBalance = (amount, totalSpent, userNum) => {
-    console.log(amount, totalSpent, userNum)
     let userBalance = amount - (totalSpent / userNum);
-    console.log(userBalance)
     userBalance = userBalance.toFixed(2);
     return userBalance;
   }
@@ -47,10 +46,7 @@ class Solde extends Component {
     console.log(expenseSummary, 'ziufiueviuefbuiezudgue')
     for (let i in expenseSummary) {
       expenseSummary[i].balance = this.getUserBalance(expenseSummary[i].amount, totalSpent, sgUsers.length);
-      console.log(expenseSummary[i].balance, i)
-      console.log(expenseSummary)
     }
-    console.log(expenseSummary)
     return expenseSummary;
   }
   handleBalanceClick = () => {
@@ -59,7 +55,6 @@ class Solde extends Component {
     let negativeUser = [];
 
     const expenseSummary = this.getExpenseSummary(this.props.sgUsers, this.props.expenses);
-    console.log(expenseSummary)
     for (let i in expenseSummary) {
       if (expenseSummary[i].balance > 0) {
         positiveUser.push(expenseSummary[i]);
@@ -72,12 +67,23 @@ class Solde extends Component {
       while (positiveUser[i].balance > 0 && negativeUser[0]) {
         if (positiveUser[i].balance > negativeUser[0].balance) {
           positiveUser[i].balance -= negativeUser[0].balance;
-          negativeUser.shift();
+
           // call API
+          const fromUser = negativeUser[0].email;
+          const toUser = positiveUser[i].email;
+          const amount = negativeUser[0].balance;
+          const transactionLabel = 'sold';
+          this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel);
+          negativeUser.shift();
         } else {
           negativeUser[0].balance -= positiveUser[i].balance;
+
+          const fromUser = negativeUser[0].email;
+          const toUser = positiveUser[i].email;
+          const amount = positiveUser[i].balance;
+          const transactionLabel = 'sold';
+          this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel);
           positiveUser[i].balance = 0;
-          // call API
         }
       }
     }
@@ -108,6 +114,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    makeMoneyTransfer: bindActionCreators(makeMoneyTransfer, dispatch),
   };
 }
 
