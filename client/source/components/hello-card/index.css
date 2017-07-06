@@ -45,6 +45,7 @@
 
 .newExpense {
   position: relative;
+  height: 100px;
 }
 
 .newExpense p {
