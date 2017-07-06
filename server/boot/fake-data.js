@@ -44,7 +44,7 @@ module.exports = function (server) {
       password: '1234',
       firstName: 'Benjamin',
       lastName: 'Dekens',
-      pik: 'https://image.noelshack.com/fichiers/2017/27/4/1499295219-bdekens.jpg',
+      pik: 'https://s3.eu-central-1.amazonaws.com/cashpool/IMG_20170706_1200445.jpg',
       roles:[
         {name: "ADMIN"}
       ]
