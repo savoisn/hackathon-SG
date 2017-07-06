@@ -47,7 +47,7 @@ export const createExpense = (data) => {
   })
   .then(res => dispatch(createExpenseSuccess()))
   .then(() => {
-    dispatch(push('/activity'));
+    dispatch(push('/'));
   })
   .catch(error => {console.log(error); dispatch(createExpenseError(error))});
 }
