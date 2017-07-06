@@ -29,7 +29,7 @@ class HeaderBar extends Component {
 
         <Link className={styles.firstLink} to="/"><i></i><span>solder</span></Link>
         <Link className={styles.secondLink}><span> {userBalance} €</span></Link>
-        <Link className={styles.thirdLink} to="/"><i></i><span>activité</span></Link>
+        <Link className={styles.thirdLink} to="/activity"><i></i><span>activité</span></Link>
       </div>
 
       </div>
