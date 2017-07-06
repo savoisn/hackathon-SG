@@ -80,11 +80,11 @@ class Solde extends Component {
           const transactionLabel = 'sold';
           this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel).then((response) => {
             console.log('Money transfer : ', response);
-            this.setState({
-              isProjectOpened: false,
-            });
-            this.props.closeProjectBoolean();
           });
+          this.setState({
+            isProjectOpened: false,
+          });
+          this.props.closeProjectBoolean();
           negativeUser.shift();
         } else {
           negativeUser[0].balance -= positiveUser[i].balance;
@@ -95,10 +95,11 @@ class Solde extends Component {
           const transactionLabel = 'sold';
           this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel).then((response) => {
             console.log('Money transfer : ', response);
-            this.setState({
-              isProjectOpened: false,
-            });
           });
+          this.setState({
+            isProjectOpened: false,
+          });
+          this.props.closeProjectBoolean();
           positiveUser[i].balance = 0;
         }
       }
