@@ -129,7 +129,7 @@ class Expense extends Component {
               {_.map(this.props.sgUsers, (user, index) => (
                 <li key={index}>
                   <input id={index} type="checkbox"
-                    onChange={e => this.handleUserSelect(e, user.username)}
+                    onChange={e => this.handleUserSelect(e, user)}
                     checked={this.state.selectedUsers.includes(user.id)}
                   />
                   <label htmlFor={index}>
