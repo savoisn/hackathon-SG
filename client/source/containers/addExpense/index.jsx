@@ -4,6 +4,8 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import FlatButton from 'material-ui/FlatButton';
 
@@ -87,8 +89,8 @@ class Expense extends Component {
   render() {
     console.log("selectedUsers ",this.state.selectedUsers);
     return (
-      <div style={styles.container}>
-        <h1>Expense</h1>
+      <div className={styles.container}>
+        <h1>Ajouter une dépense</h1>
 
               <TextField
                 hintText="name"
@@ -123,21 +125,24 @@ class Expense extends Component {
               />
 
 
-            <ul>
+            <ul className={styles.list}>
               {_.map(this.props.sgUsers, (user, index) => (
                 <li key={index}>
-                  <input type="checkbox"
-                    onChange={e => this.handleUserSelect(e, user)}
+                  <input id={index} type="checkbox"
+                    onChange={e => this.handleUserSelect(e, user.username)}
                     checked={this.state.selectedUsers.includes(user.id)}
                   />
-                  <img src={"./"+user.username} />
-                  {user.firstName}
+                  <label htmlFor={index}>
+                    <img src={user.pik} />
+                    {user.firstName}
+                  </label>
                 </li>
               ))}
             </ul>
 
-          <FlatButton
+          <RaisedButton
             label="Submit"
+            primary={true}
             onTouchTap={this.createModelInstance}
           />
 

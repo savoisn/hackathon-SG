@@ -3,7 +3,7 @@
 module.exports = function (server) {
   server.dataSources.db.automigrate('project', function(err) {
     if(err) throw err;
-    
+
     server.models.project.create([{
       id: 1,
       name: "Renovons la maison familiale",
@@ -17,13 +17,14 @@ module.exports = function (server) {
 
   server.dataSources.db.automigrate('sguser', function(err) {
     if(err) throw err;
-    
+
     server.models.sguser.create([{
       username: 'nsavois',
       email: 'nsavois@gmail.com',
       password: '1234',
       firstName: 'Nicolas',
       lastName: 'Savois',
+      pik: 'https://image.noelshack.com/fichiers/2017/27/4/1499295219-nsavois.jpg',
       roles:[
         {name: "ADMIN"}
       ]
@@ -33,6 +34,7 @@ module.exports = function (server) {
       password: '1234',
       firstName: 'Aurelie',
       lastName: 'Ambal',
+      pik: 'https://image.noelshack.com/fichiers/2017/27/4/1499295218-aambal.jpg',
       roles:[
         {name: "ADMIN"}
       ]
@@ -42,6 +44,7 @@ module.exports = function (server) {
       password: '1234',
       firstName: 'Benjamin',
       lastName: 'Dekens',
+      pik: 'https://image.noelshack.com/fichiers/2017/27/4/1499295219-bdekens.jpg',
       roles:[
         {name: "ADMIN"}
       ]
@@ -51,6 +54,7 @@ module.exports = function (server) {
       password: '1234',
       firstName: 'Thang',
       lastName: 'Nguyen',
+      pik: 'https://image.noelshack.com/fichiers/2017/27/4/1499295219-tnguyen.jpg',
       roles:[
         {name: "ADMIN"}
       ]
@@ -60,7 +64,7 @@ module.exports = function (server) {
   });
   server.dataSources.db.automigrate('ProjectUser', function(err) {
     if(err) throw err;
-    
+
     server.models.ProjectUser.create([{
       userId: 1,
       projectId: 1
@@ -79,12 +83,39 @@ module.exports = function (server) {
   });
   server.dataSources.db.automigrate('expense', function(err) {
     if(err) throw err;
-    
+
     server.models.expense.create([{
       name:'first expense',
 			date: new Date(),
 			amount: 2000,
 			PayerId: 1,
+			settled: true,
+			projectId: 1
+
+    },
+    {
+      name:'second expense',
+			date: new Date(),
+			amount: 200,
+			PayerId: 1,
+			settled: true,
+			projectId: 1
+
+    },
+    {
+      name:'first expense',
+			date: new Date(),
+			amount: 100,
+			PayerId: 2,
+			settled: true,
+			projectId: 1
+
+    },
+    {
+      name:'first expense',
+			date: new Date(),
+			amount: 200,
+			PayerId: 4,
 			settled: true,
 			projectId: 1
 
@@ -94,7 +125,7 @@ module.exports = function (server) {
   });
   server.dataSources.db.automigrate('ExpenseRecipient', function(err) {
     if(err) throw err;
-    
+
     server.models.ExpenseRecipient.create([{
       recipientId: 2,
       expenseId: 1

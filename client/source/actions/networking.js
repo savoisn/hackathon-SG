@@ -12,6 +12,11 @@ const getRequestOptions = (options, authentication) => {
   if (options && options.method === 'POST' && typeof options.body === 'string') {
     headers = { 'Content-Type': 'application/json' };
   }
+
+  if (options && ((options.method === 'GET') || (options.method === 'POST')) && options.userToken) {
+    headers = { 'Content-Type': 'application/json' };
+    headers.userToken = options.userToken;
+  }
   const requestOptions = merge({
     credentials: 'same-origin',
     headers,
