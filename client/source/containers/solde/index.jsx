@@ -52,30 +52,24 @@ class Solde extends Component {
     return expenseSummary;
   }
 
-  handleBalanceClick = () => {
-    console.log('handle balance');
-    // Calcul des soldes
-    const userBalance = this.getUserBalance(
-      this.props.authentication.user.userId,
-      this.props.expenses,
-      this.props.sgUsers,
-    );
-
-    const expenseSummary = this.getExpenseSummary(this.props.sgUsers, this.props.expenses);
-    console.log('expenseSummary : ', expenseSummary);
-
-    const projectTotalSpent = this.getTotalSpent(
-      this.props.authentication.user.userId,
-      this.props.expenses,
-    );
-    console.log('projectTotalSpent : ', projectTotalSpent);
-
+  sortBalanceSummary = (expenseSummary, projectTotalSpent) => {
     const balanceSummary = _.map(expenseSummary, (expense) => {
       const balanceObject = {};
       const shouldHavePaid = parseFloat(projectTotalSpent) / Object.keys(expenseSummary).length;
       const balance = expense.amount - shouldHavePaid;
       const twoDecimalBalance = parseFloat(Math.round(balance * 100) / 100).toFixed(2);
       balanceObject.balance = twoDecimalBalance;
+      if (parseFloat(twoDecimalBalance) > 0) {
+        balanceObject.doitRecevoir = twoDecimalBalance;
+        balanceObject.doitDonner = '0.00';
+      } else if (parseFloat(twoDecimalBalance) < 0) {
+        balanceObject.doitRecevoir = '0.00';
+        balanceObject.doitDonner = `${twoDecimalBalance * -1}`;
+      } else {
+        balanceObject.doitRecevoir = '0.00';
+        balanceObject.doitDonner = '0.00';
+      }
+
       balanceObject.name = expense.name;
       switch (expense.name) {
         case 'Nicolas Savois':
@@ -96,6 +90,55 @@ class Solde extends Component {
       return balanceObject;
     });
     console.log('balanceSummary : ', balanceSummary);
+    const positiveBalance = balanceSummary.filter(balanceSummaryObj => parseFloat(balanceSummaryObj.balance) >= 0);
+    console.log('positiveBalance : ', positiveBalance);
+
+
+    const negativeBalance = balanceSummary.filter(balanceSummaryObj => parseFloat(balanceSummaryObj.balance) < 0);
+    console.log('negativeBalance : ', negativeBalance);
+
+
+
+
+
+
+
+
+    const sortedBalanceSummary0 = _.map(balanceSummary, (balance) => {
+      return balance.balance;
+    });
+    console.log('sortedBalanceSummary0 : ', sortedBalanceSummary0);
+    const sortedBalanceSummary1 = sortedBalanceSummary0.sort((a, b) => { return a - b; });
+    console.log('sortedBalanceSummary1 : ', sortedBalanceSummary1);
+    const sortedBalanceSummary2 = _.map(sortedBalanceSummary1, (balance) => {
+      return balanceSummary.filter(summaryObject => balance === summaryObject.balance)[0];
+    });
+    return sortedBalanceSummary2;
+  }
+  handleBalanceClick = () => {
+    console.log('handle balance');
+    // Calcul des soldes
+    const userBalance = this.getUserBalance(
+      this.props.authentication.user.userId,
+      this.props.expenses,
+      this.props.sgUsers,
+    );
+
+    const expenseSummary = this.getExpenseSummary(this.props.sgUsers, this.props.expenses);
+    console.log('expenseSummary : ', expenseSummary);
+
+    const projectTotalSpent = this.getTotalSpent(
+      this.props.authentication.user.userId,
+      this.props.expenses,
+    );
+    console.log('projectTotalSpent : ', projectTotalSpent);
+
+    const sortedBalanceSummary = this.sortBalanceSummary(expenseSummary, projectTotalSpent);
+    console.log('sortedBalanceSummary : ', sortedBalanceSummary);
+
+    const debt = parseFloat(sortedBalanceSummary[(sortedBalanceSummary.length) - 1].balance) + parseFloat(sortedBalanceSummary[0].balance);
+    console.log('debt : ', debt);
+
 
     // Call API
   }
