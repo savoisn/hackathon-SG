@@ -59,3 +59,27 @@
   right: 30px;
   bottom: 30px;
 }
+
+.newExpense {
+  position: relative;
+}
+
+.newExpense p {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  text-align: center;
+  color: green;
+  animation-duration: 6s;
+  animation-name: tropDeStyle;
+  animation-iteration-count: 1;
+  font-size: 20px;
+  opacity: 0;
+}
+
+@keyframes tropDeStyle {
+  0% { top: 50px; opacity: 0;}
+  40% { top: 0; opacity: 1;}
+  60% { top: 0; opacity: 1;}
+  100% { top: 50px; opacity: 0;}
+}
