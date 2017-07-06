@@ -26,6 +26,13 @@ class HelloCard extends Component {
       totalCost += expense.amount
     ));
 
+    const expenses = this.props.expenses;
+    let lastSpentUserFirstName;
+    if (expenses && expenses[expenses.length - 1] && expenses[expenses.length - 1].PayerId) {
+      const lastSpentPayerId = expenses[expenses.length - 1].PayerId;
+      lastSpentUserFirstName = this.props.sgUsers.filter(user => user.id === lastSpentPayerId)[0].firstName;
+    }
+
     const { authentication: { user = { roles: [] } } } = this.props;
     return (
       <div className={styles.container}>
@@ -41,7 +48,7 @@ class HelloCard extends Component {
         </ul>
 
         <div className={styles.newExpense}>
-          <p>XXX vient d'ajouter une dépense</p>
+          <p>{lastSpentUserFirstName} vient d'ajouter une dépense</p>
         </div>
 
       </div>);
