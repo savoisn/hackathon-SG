@@ -14,13 +14,19 @@ const getExpenseRecipientSuccess = payload => ({ type: cst.GET_EXPENSE_RECIPIENT
 
 const getExpenseRecipientError = payload => ({ type: cst.GET_EXPENSE_RECIPIENT_ERROR, payload });
 
-export const createExpense = (data) => {
+export const createExpense = (
+  selectedUsers,
+  name,
+  date,
+  amount,
+  payer,
+) => {
   const expense = {
-    name: data.name,
-    date: data.date,
-    amount: data.amount,
+    name,
+    date,
+    amount,
     settled: false,
-    PayerId: data.payer,
+    PayerId: payer,
     projectId: 1,
   };
 
@@ -30,7 +36,7 @@ export const createExpense = (data) => {
   ))
   .then(res => {
     const expenseid = res.data.id;
-    const promises = data.selectedUsers.map((recipientid) => {
+    const promises = selectedUsers.map((recipientid) => {
       return new Promise ((resolve, reject) => {
         const exrc = {
           recipientId: recipientid,

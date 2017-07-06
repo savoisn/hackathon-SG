@@ -53,7 +53,13 @@ class Expense extends Component {
   }
 
   createModelInstance = () => {
-    this.props.expenseActions.createExpense(this.state);
+    this.props.expenseActions.createExpense(
+      this.state.selectedUsers,
+      this.state.name,
+      this.state.date,
+      this.state.amount,
+      this.state.payer,
+    );
   };
 
   handleChange = (e, key, value) => {
