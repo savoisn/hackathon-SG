@@ -1,6 +1,7 @@
 module.exports = function (Expense) {
 
   Expense.paySeller = function (amount, username, next) {
+    console.log("start of payseller");
     let userId = null;
     let fromBankAccount = null;
     let userToken = null;
@@ -11,6 +12,7 @@ module.exports = function (Expense) {
       }
     }).then(user => {
       userId = user.id;
+      console.log("payer : "+userId);
       switch (user.email) {
         case 'nsavois@gmail.com':
           fromBankAccount = 'f6b4636a-682b-49ea-b7e3-5634453453a5';
@@ -45,8 +47,10 @@ module.exports = function (Expense) {
 
       Expense.app.models.OpenBankApi.transferMoney(fromBankAccount, body, userToken, (err, res) => {
         if (err) {
+          console.log(err);
           return next();
         } else {
+          console.log("expense created");
           const newExpense = {
             name: 'Castorama',
             date: new Date(),
@@ -79,17 +83,15 @@ module.exports = function (Expense) {
           source: 'query'
         }
       }
-    ]
-  });
-  return {
-    returns: {
-      root: true,
-      type: 'array'
-    },
-    http: {
-      path: '/payseller',
-      verb: 'GET'
-    },
-    description: 'directly pay a seller and add a new line'
-  };
+    ],
+		returns: {
+			root: true,
+			type: 'array'
+		},
+		http: {
+			path: '/payseller',
+			verb: 'GET'
+		},
+		description: 'directly pay a seller and add a new line'
+	});
 };

@@ -27,6 +27,10 @@ export const makeMoneyTransfer = (fromUser, toUser, amount, transactionLabel) =>
         fromBankAccount = 'e5de7055-fa77-4b15-85f1-391e5b926bd0';
         userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIiOiIifQ.bTHGI4-rAu5n2Gh2gdrLXto8MVyVloG3X02_C3GMBms';
         break;
+      case 'seller@fakeshop.com':
+        fromBankAccount = 'baaf2c7d-8e0c-4aec-b320-2859f887175a';
+        userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIiOiIifQ.blx7sBKXbfuJS09U3krjGrSN1QAiS_rAYsm6Ww-w17o';
+        break;
       default:
         break;
     }
@@ -44,6 +48,9 @@ export const makeMoneyTransfer = (fromUser, toUser, amount, transactionLabel) =>
         break;
       case 'tnguyen@gmail.com':
         toBankAccount = 'e5de7055-fa77-4b15-85f1-391e5b926bd0';
+        break;
+      case 'seller@fakeshop.com':
+        toBankAccount = 'baaf2c7d-8e0c-4aec-b320-2859f887175a';
         break;
       default:
         break;
