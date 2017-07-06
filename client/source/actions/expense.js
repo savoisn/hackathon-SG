@@ -53,7 +53,7 @@ export const createExpense = (data) => {
 }
 
 export const getExpense = () => {
-  return dispatch => dispatch(request('api/expenses'))
+  return dispatch => dispatch(request('api/expenses?filter[order]=id%20DESC'))
   .then(res => dispatch(getExpenseSuccess(res.data)))
   .catch(error => dispatch(getExpenseError(error)));
 }

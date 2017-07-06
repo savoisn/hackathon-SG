@@ -5,6 +5,10 @@ import { List, ListItem } from 'material-ui/List';
 import Translate from 'react-translate-component';
 
 export default class SideBar extends Component {
+  handleLogout() {
+    console.log('logout');
+  }
+
   render() {
     return (
       <Drawer open={this.props.open}>
@@ -18,7 +22,11 @@ export default class SideBar extends Component {
             primaryText="Login"
           />
           <ListItem
-            onTouchTap={this.props.onLogout}
+            onTouchTap={this.props.goToPayment}
+            primaryText="Make a payment"
+          />
+          <ListItem
+            onTouchTap={this.props.goToLogout}
             primaryText={<Translate content="authentication.logout" />}
           />
         </List>
@@ -30,6 +38,7 @@ export default class SideBar extends Component {
 SideBar.propTypes = {
   open: PropTypes.bool,
   onCloseSideBar: PropTypes.func,
-  onLogout: PropTypes.func,
   goToLogin: PropTypes.func,
+  goToLogout: PropTypes.func,
+  goToPayment: PropTypes.func,
 };

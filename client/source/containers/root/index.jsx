@@ -22,11 +22,17 @@ export class Root extends Component {
   }
 
   doLogout() {
-    this.props.authenticationEffects.logout();
+    this.props.sideBarActions.close();
   }
 
   goToLogin() {
     hashHistory.push('/login');
+    this.props.sideBarActions.close();
+  }
+
+  goToPayment() {
+    hashHistory.push('payment');
+    this.props.sideBarActions.close();
   }
 
   render() {
@@ -39,8 +45,9 @@ export class Root extends Component {
         <SideBar
           open={this.props.sideBar.open}
           onCloseSideBar={this.props.sideBarActions.close}
-          onLogout={this.props.authenticationEffects.logout}
-          goToLogin={this.goToLogin}
+          goToLogin={() => this.goToLogin()}
+          goToLogout={() => this.doLogout()}
+          goToPayment={() => this.goToPayment()}
         />
         {this.props.children}
 

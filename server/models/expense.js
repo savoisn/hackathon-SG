@@ -1,6 +1,6 @@
 module.exports = function (Expense) {
 
-  Expense.paySeller = function (amount, username, next) {
+  Expense.paySeller = function (amount, username, reason, next) {
     console.log("start of payseller");
     let userId = null;
     let fromBankAccount = null;
@@ -33,35 +33,15 @@ module.exports = function (Expense) {
         default:
           break;
       }
-      body = {
-        value: {
-          currency: 'EUR',
-          amount
-        },
-        description: 'Castorama',
-        to: {
-          bank_id: 'socgen.31.fr.fr',
-          account_id: 'baaf2c7d-8e0c-4aec-b320-2859f887175a'
-        }
+      const newExpense = {
+        name: reason,
+        date: new Date(),
+        amount,
+        PayerId: userId,
+        settled: true,
+        projectId: 1
       };
-
-      Expense.app.models.OpenBankApi.transferMoney(fromBankAccount, body, userToken, (err, res) => {
-        if (err) {
-          console.log(err);
-          return next();
-        } else {
-          console.log("expense created");
-          const newExpense = {
-            name: 'Castorama',
-            date: new Date(),
-            amount,
-            PayerId: userId,
-            settled: true,
-            projectId: 1
-          };
-          return Expense.create(newExpense, next);
-        }
-      });
+      Expense.create(newExpense, next);
     })
       .catch(err => { console.log(err); });
   };
@@ -77,6 +57,13 @@ module.exports = function (Expense) {
         }
       }, {
         arg: 'username',
+        type: 'string',
+        required: true,
+        http: {
+          source: 'query'
+        }
+      }, {
+        arg: 'reason',
         type: 'string',
         required: true,
         http: {

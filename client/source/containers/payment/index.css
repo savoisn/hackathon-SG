@@ -1,0 +1,51 @@
+.container {
+  padding: 2%;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Raleway', sans-serif !important;
+  padding-top: 80px
+}
+
+.container h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 26px;
+  text-align: center;
+  color: #003962;
+  margin: 0;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.btnLine {
+  width: 100%;
+  text-align: center;
+}
+
+.firstLink {
+  background-color: #f63249;
+  width: 30%;
+  margin: 2.5%;
+  height: 44px;
+  display: inline-block;
+  font-family: 'Lobster', cursive;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  line-height: 44px;
+  border-radius: 6px;
+  font-size: 22px;
+}
+
+.firstLink i {
+  display: inline-block;
+  margin: 0px 4px 0px 0px;
+  width: 32px;
+  height: 38px;
+  vertical-align: middle;
+  background-image: url('./piti_poussin.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-origin: center;
+}
