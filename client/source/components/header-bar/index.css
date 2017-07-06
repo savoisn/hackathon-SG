@@ -3,6 +3,11 @@
   background-color: #f63249;
 }
 
+button + h1 {
+  font-family: 'Lobster', cursive !important;
+  font-size: 26px !important;
+}
+
 .firstLink, .thirdLink {
   background-color: #003962;
   width: 30%;
