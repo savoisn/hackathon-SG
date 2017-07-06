@@ -5,6 +5,7 @@ import RootConnected from './containers/root';
 import HomeView from './containers/home-view';
 import AddExpense from './containers/addExpense';
 import Activity from './containers/activity';
+import Solde from './containers/solde';
 
 import crudRoutes from './crud-routes/';
 
@@ -16,6 +17,7 @@ const routes = (
       <IndexRoute component={HomeView} />
       <Route path="/addExpense" component={AddExpense} />
       <Route path="/activity" component={Activity} />
+      <Route path="/solde" component={Solde} />
       {crudRoutes.map(route => route)}
     </Route>
     <Route path="/login" component={LoginContainer} />
