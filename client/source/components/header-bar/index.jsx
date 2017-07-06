@@ -23,6 +23,7 @@ class HeaderBar extends Component {
       <AppBar
         onLeftIconButtonTouchTap={this.props.onOpenSideBar}
         title="Cash Pool"
+        iconElementLeft={<i className={styles.logo}></i>}
       />
 
       <div className={styles.btnLine}>

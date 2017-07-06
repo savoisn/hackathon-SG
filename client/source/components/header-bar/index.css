@@ -3,7 +3,7 @@
   background-color: #f63249;
 }
 
-button + h1 {
+h1 {
   font-family: 'Lobster', cursive !important;
   font-size: 26px !important;
 }
@@ -58,4 +58,16 @@ button + h1 {
   line-height: 44px;
   border-radius: 6px;
   font-size: 24px;
+}
+
+.logo {
+  display: inline-block;
+  margin: 4px 8px 0px 8px;
+  width: 26px;
+  height: 42px;
+  vertical-align: middle;
+  background-image: url('./logo.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-origin: center;
 }
