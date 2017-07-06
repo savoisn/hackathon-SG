@@ -1,8 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { Card, CardText } from 'material-ui/Card';
 import { connect } from 'react-redux';
 import * as ExpenseActions from '../../actions/expense';
 import { bindActionCreators } from 'redux';
+
+import styles from './index.css';
 
 class HelloCard extends Component {
   componentWillMount() {
@@ -25,17 +28,20 @@ class HelloCard extends Component {
 
     const { authentication: { user = { roles: [] } } } = this.props;
     return (
-      <div className="box">
+      <div className={styles.container}>
         <Card>
           <CardText>
-            TOTAL COST: {totalCost}
+            <h1>Dépenses : {totalCost} €</h1>
           </CardText>
         </Card>
-        <ul>
+        <ul className={styles.list}>
           {_.map(expenseSummary, (expense, index) => (
-            <li key={index} > <img src={expense.pic} />{expense.name} {expense.amount}</li>
+            <li key={index} > <img src={expense.pic} />{expense.name} <span>{expense.amount} €</span></li>
           ))}
         </ul>
+
+        <Link primary={true} className={styles.addExpense} to="/addExpense"><span>+</span></Link>
+
       </div>);
   }
 
