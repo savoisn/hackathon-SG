@@ -88,7 +88,7 @@ class Expense extends Component {
         <h1>Ajouter une dépense</h1>
 
               <TextField
-                hintText="name"
+                hintText="Libellé"
                 onChange={(e, value) => this.handleChange(e, 'name', value)}
                 style={styles.property}
                 value={this.state.name}
