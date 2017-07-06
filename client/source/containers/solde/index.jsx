@@ -74,6 +74,7 @@ class Solde extends Component {
           const amount = negativeUser[0].balance;
           const transactionLabel = 'sold';
           this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel);
+         // this.props.expenseActions.createExpense(this.state);
           negativeUser.shift();
         } else {
           negativeUser[0].balance -= positiveUser[i].balance;
@@ -83,6 +84,7 @@ class Solde extends Component {
           const amount = positiveUser[i].balance;
           const transactionLabel = 'sold';
           this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel);
+          //this.props.expenseActions.createExpense(this.state);
           positiveUser[i].balance = 0;
         }
       }
@@ -114,6 +116,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    expenseActions: bindActionCreators(ExpenseActions, dispatch),
     makeMoneyTransfer: bindActionCreators(makeMoneyTransfer, dispatch),
   };
 }
