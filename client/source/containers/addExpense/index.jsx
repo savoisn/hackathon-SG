@@ -108,23 +108,6 @@ class Expense extends Component {
                 value={this.state.amount}
               />
 
-
-              <TextField
-                hintText="payer"
-                onChange={(e, value) => this.handleChange(e, 'payer', value)}
-                style={styles.property}
-                value={this.state.payer}
-              />
-
-
-              <TextField
-                hintText="recipients"
-                onChange={(e, value) => this.handleChange(e, 'recipients', value)}
-                style={styles.property}
-                value={this.state.recipients}
-              />
-
-
             <ul className={styles.list}>
               {_.map(this.props.sgUsers, (user, index) => (
                 <li key={index}>
