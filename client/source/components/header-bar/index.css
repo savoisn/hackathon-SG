@@ -3,7 +3,7 @@
   background-color: #f63249;
 }
 
-button + h1 {
+h1 {
   font-family: 'Lobster', cursive !important;
   font-size: 26px !important;
 }
