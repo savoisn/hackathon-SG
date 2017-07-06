@@ -59,3 +59,15 @@ button + h1 {
   border-radius: 6px;
   font-size: 24px;
 }
+
+.logo {
+  display: inline-block;
+  margin: 4px 8px 0px 8px;
+  width: 26px;
+  height: 42px;
+  vertical-align: middle;
+  background-image: url('./logo.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-origin: center;
+}

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import _ from 'lodash';
 import moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -22,10 +23,10 @@ class Solde extends Component {
     return (
       <div className={styles.container}>
         <h1>Voulez-vous solder la balance de vos comptes ?</h1>
-        <RaisedButton
-          label="Valider"
-          primary={true}
-          onTouchTap={this.handleBalanceClick} />
+
+        <div className={styles.btnLine}>
+          <Link className={styles.firstLink} onClick={this.handleBalanceClick}><i></i><span>Valider</span></Link>
+        </div>
       </div>
     );
   }

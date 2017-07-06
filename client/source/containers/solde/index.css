@@ -17,3 +17,35 @@
   margin: 0 auto;
   margin-bottom: 40px;
 }
+
+.btnLine {
+  width: 100%;
+  text-align: center;
+}
+
+.firstLink {
+  background-color: #f63249;
+  width: 30%;
+  margin: 2.5%;
+  height: 44px;
+  display: inline-block;
+  font-family: 'Lobster', cursive;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  line-height: 44px;
+  border-radius: 6px;
+  font-size: 22px;
+}
+
+.firstLink i {
+  display: inline-block;
+  margin: 0px 10px 0px 0px;
+  width: 26px;
+  height: 32px;
+  vertical-align: middle;
+  background-image: url('./poussin.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-origin: center;
+}
