@@ -31,34 +31,35 @@ module.exports = function (Expense) {
         default:
           break;
       }
-      console.log(amount, user);
-      // body = JSON.stringify({
-      //   value: {
-      //     currency: 'EUR',
-      //     amount
-      //   },
-      //   description: 'Castorama',
-      //   to: {
-      //     bank_id: 'socgen.31.fr.fr',
-      //     account_id: 'baaf2c7d-8e0c-4aec-b320-2859f887175a'
-      //   }
-      // });
-      // Expense.app.models.OpenBankApi.transferMoney(fromBankAccount, body, userToken, processResponse)
-      // .then(res => {
-      //   console.log(res);
-      //   next();
-      // });
-      // const newExpense = {
-      //   name: 'Castorama',
-      //   date: new Date(),
-      //   amount,
-      //   PayerId: userId,
-      //   settled: true,
-      //   projectId: 1
-      // };
-      // return Expense.create(newExpense, next);
+      body = {
+        value: {
+          currency: 'EUR',
+          amount
+        },
+        description: 'Castorama',
+        to: {
+          bank_id: 'socgen.31.fr.fr',
+          account_id: 'baaf2c7d-8e0c-4aec-b320-2859f887175a'
+        }
+      };
+
+      Expense.app.models.OpenBankApi.transferMoney(fromBankAccount, body, userToken, (err, res) => {
+        if (err) {
+          return next();
+        } else {
+          const newExpense = {
+            name: 'Castorama',
+            date: new Date(),
+            amount,
+            PayerId: userId,
+            settled: true,
+            projectId: 1
+          };
+          return Expense.create(newExpense, next);
+        }
+      });
     })
-    .catch(err => { console.log(err);});
+      .catch(err => { console.log(err); });
   };
 
   Expense.remoteMethod('paySeller', {
