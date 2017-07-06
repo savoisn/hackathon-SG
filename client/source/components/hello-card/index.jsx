@@ -41,7 +41,7 @@ class HelloCard extends Component {
         </ul>
 
         <div className={styles.newExpense}>
-          <p>XXX vient d'ajouter une dépense</p>
+          <p>Nouvelle dépense ajoutée</p>
         </div>
 
       </div>);
