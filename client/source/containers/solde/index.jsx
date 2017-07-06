@@ -13,21 +13,16 @@ import * as ExpenseActions from '../../actions/expense';
 import styles from './index.css';
 
 class Solde extends Component {
-  getUserBalance = (userId, expenses, sgUsers) => {
-    let userTotalSpend = 0;
-    let projectTotalSpend = 0;
-    _.map(expenses, (expense) => {
-      projectTotalSpend += expense.amount;
-      if (userId === expense.PayerId) {
-        userTotalSpend += expense.amount;
-      }
-    });
-    let userBalance = userTotalSpend - (projectTotalSpend / sgUsers.length);
+
+  getUserBalance = (amount, totalSpent, userNum) => {
+    console.log(amount, totalSpent, userNum)
+    let userBalance = amount - (totalSpent / userNum);
+    console.log(userBalance)
     userBalance = userBalance.toFixed(2);
     return userBalance;
   }
 
-  getTotalSpent = (userId, expenses) => {
+  getTotalSpent = (expenses) => {
     let projectTotalSpend = 0;
     _.map(expenses, (expense) => {
       projectTotalSpend += expense.amount;
@@ -40,8 +35,7 @@ class Solde extends Component {
     let totalCost = 0;
     _.map(sgUsers, (user) => (
       expenseSummary[user.id] = {
-        name: user.firstName + ' ' + user.lastName,
-        pic: user.pik,
+        email: user.email,
         amount: 0,
       }
     ));
@@ -49,98 +43,44 @@ class Solde extends Component {
       expenseSummary[expense.PayerId].amount += expense.amount,
       totalCost += expense.amount
     ));
+    const totalSpent = this.getTotalSpent(expenses);
+    console.log(expenseSummary, 'ziufiueviuefbuiezudgue')
+    for (let i in expenseSummary) {
+      expenseSummary[i].balance = this.getUserBalance(expenseSummary[i].amount, totalSpent, sgUsers.length);
+      console.log(expenseSummary[i].balance, i)
+      console.log(expenseSummary)
+    }
+    console.log(expenseSummary)
     return expenseSummary;
   }
-
-  sortBalanceSummary = (expenseSummary, projectTotalSpent) => {
-    const balanceSummary = _.map(expenseSummary, (expense) => {
-      const balanceObject = {};
-      const shouldHavePaid = parseFloat(projectTotalSpent) / Object.keys(expenseSummary).length;
-      const balance = expense.amount - shouldHavePaid;
-      const twoDecimalBalance = parseFloat(Math.round(balance * 100) / 100).toFixed(2);
-      balanceObject.balance = twoDecimalBalance;
-      if (parseFloat(twoDecimalBalance) > 0) {
-        balanceObject.doitRecevoir = twoDecimalBalance;
-        balanceObject.doitDonner = '0.00';
-      } else if (parseFloat(twoDecimalBalance) < 0) {
-        balanceObject.doitRecevoir = '0.00';
-        balanceObject.doitDonner = `${twoDecimalBalance * -1}`;
-      } else {
-        balanceObject.doitRecevoir = '0.00';
-        balanceObject.doitDonner = '0.00';
-      }
-
-      balanceObject.name = expense.name;
-      switch (expense.name) {
-        case 'Nicolas Savois':
-          balanceObject.email = 'nsavois@gmail.com';
-          break;
-        case 'Aurelie Ambal':
-          balanceObject.email = 'aambal@gmail.com';
-          break;
-        case 'Benjamin Dekens':
-          balanceObject.email = 'bdekens@gmail.com';
-          break;
-        case 'Thang Nguyen':
-          balanceObject.email = 'tnguyen@gmail.com';
-          break;
-        default:
-          break;
-      }
-      return balanceObject;
-    });
-    console.log('balanceSummary : ', balanceSummary);
-    const positiveBalance = balanceSummary.filter(balanceSummaryObj => parseFloat(balanceSummaryObj.balance) >= 0);
-    console.log('positiveBalance : ', positiveBalance);
-
-
-    const negativeBalance = balanceSummary.filter(balanceSummaryObj => parseFloat(balanceSummaryObj.balance) < 0);
-    console.log('negativeBalance : ', negativeBalance);
-
-
-
-
-
-
-
-
-    const sortedBalanceSummary0 = _.map(balanceSummary, (balance) => {
-      return balance.balance;
-    });
-    console.log('sortedBalanceSummary0 : ', sortedBalanceSummary0);
-    const sortedBalanceSummary1 = sortedBalanceSummary0.sort((a, b) => { return a - b; });
-    console.log('sortedBalanceSummary1 : ', sortedBalanceSummary1);
-    const sortedBalanceSummary2 = _.map(sortedBalanceSummary1, (balance) => {
-      return balanceSummary.filter(summaryObject => balance === summaryObject.balance)[0];
-    });
-    return sortedBalanceSummary2;
-  }
   handleBalanceClick = () => {
-    console.log('handle balance');
-    // Calcul des soldes
-    const userBalance = this.getUserBalance(
-      this.props.authentication.user.userId,
-      this.props.expenses,
-      this.props.sgUsers,
-    );
+    // Calcul des soldesexpenses
+    let positiveUser = [];
+    let negativeUser = [];
 
     const expenseSummary = this.getExpenseSummary(this.props.sgUsers, this.props.expenses);
-    console.log('expenseSummary : ', expenseSummary);
-
-    const projectTotalSpent = this.getTotalSpent(
-      this.props.authentication.user.userId,
-      this.props.expenses,
-    );
-    console.log('projectTotalSpent : ', projectTotalSpent);
-
-    const sortedBalanceSummary = this.sortBalanceSummary(expenseSummary, projectTotalSpent);
-    console.log('sortedBalanceSummary : ', sortedBalanceSummary);
-
-    const debt = parseFloat(sortedBalanceSummary[(sortedBalanceSummary.length) - 1].balance) + parseFloat(sortedBalanceSummary[0].balance);
-    console.log('debt : ', debt);
-
-
-    // Call API
+    console.log(expenseSummary)
+    for (let i in expenseSummary) {
+      if (expenseSummary[i].balance > 0) {
+        positiveUser.push(expenseSummary[i]);
+      } else if (expenseSummary[i].balance < 0) {
+        expenseSummary[i].balance *= -1;
+        negativeUser.push(expenseSummary[i]);
+      }
+    }
+    for (const i in positiveUser) {
+      while (positiveUser[i].balance > 0 && negativeUser[0]) {
+        if (positiveUser[i].balance > negativeUser[0].balance) {
+          positiveUser[i].balance -= negativeUser[0].balance;
+          negativeUser.shift();
+          // call API
+        } else {
+          negativeUser[0].balance -= positiveUser[i].balance;
+          positiveUser[i].balance = 0;
+          // call API
+        }
+      }
+    }
   }
   render() {
     return (
