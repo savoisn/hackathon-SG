@@ -59,12 +59,12 @@ class Login extends Component {
             <TextField
               hintText='Username'
               value={this.state.usernameValue}
-              onChange={e => this.handleUsernameFieldChange(e)} 
+              onChange={e => this.handleUsernameFieldChange(e)}
             />
             <br />
-            <TextField 
+            <TextField
               hintText='Password'
-              value={this.state.passwordValue} 
+              value={this.state.passwordValue}
               onChange={e => this.handlePasswordFieldChange(e)}
             />
             <br />

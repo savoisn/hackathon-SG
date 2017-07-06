@@ -14,7 +14,6 @@ export const login = credentials =>
       token = res.data.id
       return dispatch(request(urls.AUTH_USER+res.data.userId, { method: 'GET' } ))
     }).then((res) => {
-      console.log('res', res);
       res.data.userId = res.data.id;
       res.data.id = token;
 

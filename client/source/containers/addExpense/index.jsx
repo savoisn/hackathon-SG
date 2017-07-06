@@ -37,17 +37,15 @@ class Expense extends Component {
 
   componentWillMount() {
     const users = this.props.sgUsers.map((user) => {
-      console.log(user);
       return user.id;
     });
     this.setState({ selectedUsers: users });
+    this.setState({ payer: this.props.authentication.user.userId });
   }
 
   componentWillReceiveProps(nextProps) {
     const myusers = nextProps.sgUsers;
-    console.log(myusers);
     const users = myusers.map((user) => {
-      console.log(user);
       return user.id;
     });
     this.setState({ selectedUsers: users });
@@ -55,8 +53,6 @@ class Expense extends Component {
   }
 
   createModelInstance = () => {
-    console.log(this.state);
-
     this.props.expenseActions.createExpense(this.state);
   };
 
@@ -87,7 +83,6 @@ class Expense extends Component {
   }
 
   render() {
-    console.log("selectedUsers ",this.state.selectedUsers);
     return (
       <div className={styles.container}>
         <h1>Ajouter une dépense</h1>

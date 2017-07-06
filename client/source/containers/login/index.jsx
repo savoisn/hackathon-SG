@@ -28,7 +28,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  console.log("Authentication " +login)
   return {
     loginEffect: bindActionCreators(login, dispatch),
   };
