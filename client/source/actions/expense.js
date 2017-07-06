@@ -1,5 +1,6 @@
 import cst from '../constants/expense';
 import { request } from './networking';
+import { push } from 'react-router-redux'
 
 const createExpenseSuccess = payload => ({ type: cst.CREATE_EXPENSE_SUCCESS, payload });
 
@@ -14,12 +15,43 @@ const getExpenseRecipientSuccess = payload => ({ type: cst.GET_EXPENSE_RECIPIENT
 const getExpenseRecipientError = payload => ({ type: cst.GET_EXPENSE_RECIPIENT_ERROR, payload });
 
 export const createExpense = (data) => {
+  const expense = {
+    name: data.name,
+    date: data.date,
+    amount: data.amount,
+    settled: false,
+    PayerId: 2,
+    projectId: 1,
+  };
+
   return dispatch => dispatch(request(
     'api/expenses',
-    { method: 'POST', body: JSON.stringify(data) },
+    { method: 'POST', body: JSON.stringify(expense) },
   ))
-  .then(res => dispatch(createExpenseSuccess(res.data)))
-  .catch(error => dispatch(createExpenseError(error)));
+  .then(res => {
+    console.log(res);
+    const expenseid = res.data.id;
+    const promises = data.selectedUsers.map((recipientid) => {
+      return new Promise ((resolve, reject) => {
+        console.log(recipientid);
+        const exrc = {
+          recipientId: recipientid,
+          expenseId: expenseid,
+        }
+        dispatch(request(`api/ExpenseRecipients`, 
+          { method: 'POST', body: JSON.stringify(exrc) }))
+        .then(res => resolve(res))
+        .catch(err => reject(err))
+      }
+    )
+    })
+    Promise.all(promises)
+  })
+  .then(res => dispatch(createExpenseSuccess()))
+  .then(() => {
+    dispatch(push('/activity'));
+  })
+  .catch(error => {console.log(error); dispatch(createExpenseError(error))});
 }
 
 export const getExpense = () => {

@@ -6,6 +6,9 @@ export default function reducer(state = [], action) {
       return action.payload;
     }
     case cst.CREATE_EXPENSE_SUCCESS: {
+      if (action.payload === undefined) {
+        return state;
+      }
       return [...state, ...action.payload];
     }
     case cst.CREATE_EXPENSE_RECIPIENT_SUCCESS: {

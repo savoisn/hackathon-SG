@@ -4,7 +4,6 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
 
 import FlatButton from 'material-ui/FlatButton';
 
@@ -29,16 +28,33 @@ class Expense extends Component {
         date: '',
         amount: '',
       },
-      selectedUser: [],
+      selectedUsers: [],
     };
   }
 
 
   componentWillMount() {
-    this.props.expenseActions.getExpense();
+    const users = this.props.sgUsers.map((user) => {
+      console.log(user);
+      return user.id;
+    });
+    this.setState({ selectedUsers: users });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const myusers = nextProps.sgUsers;
+    console.log(myusers);
+    const users = myusers.map((user) => {
+      console.log(user);
+      return user.id;
+    });
+    this.setState({ selectedUsers: users });
+    this.setState({ payer: this.props.authentication.user.userId });
   }
 
   createModelInstance = () => {
+    console.log(this.state);
+
     this.props.expenseActions.createExpense(this.state);
   };
 
@@ -51,24 +67,25 @@ class Expense extends Component {
     });
   };
 
-  handleUserSelect = (e, username) => {
+  handleUserSelect = (e, user) => {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    const selectedUser = this.state.selectedUser;
-    let newSelectedUser = [];
+    const selectedUsers = this.state.selectedUsers;
+    let newSelectedUsers = [];
     if (value) {
-      newSelectedUser = [...selectedUser, username];
+      newSelectedUsers = [...selectedUsers, user.id];
     } else {
-      newSelectedUser = selectedUser.filter(name =>
-        name !== username,
+      newSelectedUsers = selectedUsers.filter(id =>
+        id !== user.id,
       );
     }
-
     this.setState({
-      selectedUser: newSelectedUser,
+      selectedUsers: newSelectedUsers,
     });
   }
+
   render() {
+    console.log("selectedUsers ",this.state.selectedUsers);
     return (
       <div style={styles.container}>
         <h1>Expense</h1>
@@ -110,7 +127,8 @@ class Expense extends Component {
               {_.map(this.props.sgUsers, (user, index) => (
                 <li key={index}>
                   <input type="checkbox"
-                    onChange={e => this.handleUserSelect(e, user.username)}
+                    onChange={e => this.handleUserSelect(e, user)}
+                    checked={this.state.selectedUsers.includes(user.id)}
                   />
                   <img src={"./"+user.username} />
                   {user.firstName}
@@ -143,6 +161,7 @@ function mapStateToProps(state) {
   return {
     expenses: state.expense,
     sgUsers: state.sgusers,
+    authentication: state.authentication,
   };
 }
 
