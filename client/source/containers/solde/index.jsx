@@ -14,6 +14,34 @@ import * as ExpenseActions from '../../actions/expense';
 import styles from './index.css';
 
 class Solde extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: '',
+      date: moment().format('YYYY-MM-DD'),
+      amount: 0,
+      payer: '',
+      recipients: '',
+      settled: false,
+      errorText: {
+        name: '',
+        date: '',
+        amount: '',
+      },
+      selectedUsers: [],
+    };
+    //setState name =libelle du de la depense
+    //setState payer = la personne qui paye
+  }
+
+  componentWillMount() {
+    const users = this.props.sgUsers.map((user) => {
+      return user.id;
+    });
+    this.setState({ selectedUsers: users });
+    this.setState({ payer: this.props.authentication.user.userId });
+  }
 
   getUserBalance = (amount, totalSpent, userNum) => {
     let userBalance = amount - (totalSpent / userNum);
@@ -35,6 +63,7 @@ class Solde extends Component {
     _.map(sgUsers, (user) => (
       expenseSummary[user.id] = {
         email: user.email,
+        userId: user.id,
         amount: 0,
       }
     ));
@@ -73,8 +102,17 @@ class Solde extends Component {
           const toUser = positiveUser[i].email;
           const amount = negativeUser[0].balance;
           const transactionLabel = 'sold';
-          this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel);
-         // this.props.expenseActions.createExpense(this.state);
+          this.props.makeMoneyTransfer(fromUser, toUser, amount, transactionLabel).then((res) => {
+            console.log('then money transfer : ', res);
+
+            this.props.expenseActions.createExpense(
+              [positiveUser[i].userId],
+              `Depense ${this.state.date}`,
+              this.state.date,
+              amount,
+              '1',
+            );
+          });
           negativeUser.shift();
         } else {
           negativeUser[0].balance -= positiveUser[i].balance;

@@ -56,24 +56,21 @@ export const makeMoneyTransfer = (fromUser, toUser, amount, transactionLabel) =>
         break;
     }
 
-    dispatch(request(`api/OpenBankApi/transferMoney?fromBankAccount=${fromBankAccount}`, {
-      method: 'POST',
-      userToken,
-      body: JSON.stringify({
-        value: {
-          currency: 'EUR',
-          amount,
-        },
-        description: transactionLabel,
-        to: {
-          bank_id: 'socgen.31.fr.fr',
-          account_id: toBankAccount,
-        },
-      }),
-    })).then((response) => {
-        console.log('Money transfer : ', response);
-        // dispatch({ type: MAKE_MONEY_TRANSFER, documentParameters: response.data });
-    });
+  return dispatch(request(`api/OpenBankApi/transferMoney?fromBankAccount=${fromBankAccount}`, {
+    method: 'POST',
+    userToken,
+    body: JSON.stringify({
+      value: {
+        currency: 'EUR',
+        amount,
+      },
+      description: transactionLabel,
+      to: {
+        bank_id: 'socgen.31.fr.fr',
+        account_id: toBankAccount,
+      },
+    }),
+  }));
 };
 
 export default makeMoneyTransfer;
