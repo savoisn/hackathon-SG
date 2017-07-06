@@ -8,7 +8,7 @@ class HeaderBar extends Component {
   render() {
     let userTotalSpend = 0;
     let projectTotalSpend = 0;
-    let userId = this.props.authentication.user.userId;
+    let userId = this.props.authentication.userId || this.props.authentication.user.userId;
     _.map(this.props.expenses, (expense) => {
       projectTotalSpend += expense.amount;
       if (userId === expense.PayerId) {
