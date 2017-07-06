@@ -7,6 +7,11 @@ export const getAccountBalance = () => (dispatch) => {
   });
 };
 
+export function closeProjectBoolean() {
+  console.log('CLOSE');
+  return { type: 'CLOSE_PROJECT' };
+}
+
 export const makeMoneyTransfer = (fromUser, toUser, amount, transactionLabel) => (dispatch) => {
     let fromBankAccount;
     let userToken;

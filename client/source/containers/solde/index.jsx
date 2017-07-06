@@ -5,7 +5,7 @@ import moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { makeMoneyTransfer } from '../../actions/transferMoney';
+import { makeMoneyTransfer, closeProjectBoolean } from '../../actions/transferMoney';
 
 import FlatButton from 'material-ui/FlatButton';
 
@@ -83,6 +83,7 @@ class Solde extends Component {
             this.setState({
               isProjectOpened: false,
             });
+            this.props.closeProjectBoolean();
           });
           negativeUser.shift();
         } else {
@@ -147,6 +148,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     makeMoneyTransfer: bindActionCreators(makeMoneyTransfer, dispatch),
+    closeProjectBoolean: bindActionCreators(closeProjectBoolean, dispatch),
   };
 }
 

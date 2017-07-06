@@ -6,6 +6,10 @@ import styles from './index.css';
 
 class HeaderBar extends Component {
   render() {
+    let isOpenedProject = true;
+    if (this.props.closedProject && this.props.closedProject.closeProjectBool){
+      isOpenedProject = false;
+    }
     let userTotalSpend = 0;
     let projectTotalSpend = 0;
     let userId = this.props.authentication.userId || this.props.authentication.user.userId;
@@ -29,7 +33,9 @@ class HeaderBar extends Component {
       <div className={styles.btnLine}>
 
         <Link className={styles.firstLink} to="/solde"><i></i><span>solder</span></Link>
-        <Link className={styles.secondLink} to="/"><span> {userBalance} €</span></Link>
+        <Link className={styles.secondLink} to="/">
+            {isOpenedProject ? <span> {userBalance} €</span> : <span> - €</span>}
+        </Link>
         <Link className={styles.thirdLink} to="/activity"><i></i><span>activité</span></Link>
       </div>
 
@@ -43,6 +49,7 @@ function mapStateToProps(state) {
     expenses: state.expense,
     authentication: state.authentication,
     sgUsers: state.sgusers,
+    closedProject: state.transferMoney,
   };
 }
 HeaderBar.propTypes = {
