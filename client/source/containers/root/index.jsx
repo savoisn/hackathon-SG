@@ -35,6 +35,10 @@ export class Root extends Component {
     this.props.sideBarActions.close();
   }
 
+  goToGetPaid() {
+    hashHistory.push('getpaid');
+    this.props.sideBarActions.close();
+  }
   render() {
     if (_.isEmpty(this.props.authentication)) return (<div />);
     return (
@@ -48,6 +52,7 @@ export class Root extends Component {
           goToLogin={() => this.goToLogin()}
           goToLogout={() => this.doLogout()}
           goToPayment={() => this.goToPayment()}
+          goToGetPaid={() => this.goToGetPaid()}
         />
         {this.props.children}
 

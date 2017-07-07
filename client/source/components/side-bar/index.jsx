@@ -19,15 +19,19 @@ export default class SideBar extends Component {
         <List>
           <ListItem
             onTouchTap={this.props.goToLogin}
-            primaryText="Login"
+            primaryText="Se Connecter"
           />
           <ListItem
             onTouchTap={this.props.goToPayment}
-            primaryText="Make a payment"
+            primaryText="Faire un payement"
+          />
+          <ListItem
+            onTouchTap={this.props.goToGetPaid}
+            primaryText="Recevoir un payement"
           />
           <ListItem
             onTouchTap={this.props.goToLogout}
-            primaryText={<Translate content="authentication.logout" />}
+            primaryText="Se Deconnecter"
           />
         </List>
       </Drawer>
@@ -41,4 +45,5 @@ SideBar.propTypes = {
   goToLogin: PropTypes.func,
   goToLogout: PropTypes.func,
   goToPayment: PropTypes.func,
+  goToGetPaid: PropTypes.func,
 };
