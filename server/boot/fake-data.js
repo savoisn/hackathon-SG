@@ -85,7 +85,7 @@ module.exports = function (server) {
     if(err) throw err;
 
     server.models.expense.create([{
-      name:'Rideaux',
+      name:'Terminal NFC Amazon',
 			date: new Date(),
 			amount: 50,
 			PayerId: 1,
@@ -94,25 +94,7 @@ module.exports = function (server) {
 
     },
     {
-      name:'Canapé 2 places',
-			date: new Date(),
-			amount: 200,
-			PayerId: 1,
-			settled: true,
-			projectId: 1
-
-    },
-    {
-      name:'Tringles',
-			date: new Date(),
-			amount: 100,
-			PayerId: 2,
-			settled: true,
-			projectId: 1
-
-    },
-    {
-      name:'Chaise design',
+      name:'Nerfs pour tous',
 			date: new Date(),
 			amount: 200,
 			PayerId: 4,

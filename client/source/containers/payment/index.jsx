@@ -34,7 +34,7 @@ class Payment extends Component {
     return (
       <div onClick={() => this.fakePayment()} className={styles.container}>
         <h1>Payement effectué avec succès!</h1>
-        <Link to="/" className={styles.firstLink} ><i></i><span>Retour Accueil</span></Link>
+        <Link to='/' className={styles.firstLink} ><i></i><span>Retour Accueil</span></Link>
       </div>
     )
   }

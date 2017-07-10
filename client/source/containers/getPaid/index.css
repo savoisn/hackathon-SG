@@ -28,6 +28,33 @@
   margin: 0 10px;
 }
 
+.firstLink {
+  background-color: #f63249;
+  width: 30%;
+  margin: 2.5%;
+  height: 44px;
+  display: inline-block;
+  font-family: 'Lobster', cursive;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  line-height: 44px;
+  border-radius: 6px;
+  font-size: 22px;
+}
+
+.firstLink i {
+  display: inline-block;
+  margin: 0px 4px 0px 0px;
+  width: 32px;
+  height: 38px;
+  vertical-align: middle;
+  background-image: url('./piti_poussin.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-origin: center;
+}
+
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
   position: absolute;

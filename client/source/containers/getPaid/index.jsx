@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import _ from 'lodash';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -31,7 +32,8 @@ class Expense extends Component {
         amount: '',
       },
       selectedUsers: [],
-      isWaitingPayment:false,
+      isWaitingPayment: false,
+      isPaymentConfirmed: false,
     };
   }
 
@@ -91,6 +93,7 @@ class Expense extends Component {
         value={this.state.amount}
       />
       <br/>
+      <br/>
 
       <RaisedButton
         label="Attendre Payment"
@@ -101,15 +104,42 @@ class Expense extends Component {
     )
   }
 
+  renderPaymentConfirmed() {
+    return(
+      <div>
+        <h1 onClick={() => this.createModelInstance()}>Payement Confirmer par votre banque !</h1>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h1 onClick={() => this.createModelInstance()}>
+          vous avez recu : {this.state.amount} sur votre compte.
+        </h1>
+        <Link to='/' className={styles.firstLink} ><i></i><span>Retour Accueil</span></Link>
+      </div>
+    )
+  }
+
+  renderPayment() {
+    const isPaymentConfirmed = this.state.isPaymentConfirmed;
+
+    return (
+      <div className={styles.container}>
+        {isPaymentConfirmed ? this.renderPaymentConfirmed() : this.renderWaiting()}
+      </div>
+    );
+  }
+
   renderWaiting() {
     return (
       <div>
-        <h1 onClick={() => this.createModelInstance()}>en attente de paiement NFC...</h1>
-        <h1 onClick={() => this.createModelInstance()}>
+        <h1 onClick={() => this.setState({isPaymentConfirmed:true})}>en attente de paiement NFC...</h1>
+        <h1 onClick={() => this.setState({isPaymentConfirmed:true})}>
           {this.state.amount} - {this.state.name}
         </h1>
-        <img src="./monpoussionquibouge.gif"/>
+        <img src="https://media.giphy.com/media/xUA7aQhUBeInTWZwVq/giphy.gif"/>
         <br/>
+        <h1 onClick={() => this.createModelInstance()}>Votre telephone est la borne de paiement. Approcher un moyen de paiement NFC</h1>
         <RaisedButton
           label="Annuler"
           primary={true}
@@ -124,7 +154,7 @@ class Expense extends Component {
     return (
       <div className={styles.container}>
         <h1>Recevoir un paiement</h1>
-        {isWaitingPayment ? this.renderWaiting() : this.renderDefinePayment()}
+        {isWaitingPayment ? this.renderPayment() : this.renderDefinePayment()}
       </div>
     );
   }
